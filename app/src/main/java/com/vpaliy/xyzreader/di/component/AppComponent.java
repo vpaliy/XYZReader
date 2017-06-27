@@ -18,5 +18,4 @@ import dagger.Component;
 public interface AppComponent {
     IRepository<Article> repository();
     Context context();
-
 }

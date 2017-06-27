@@ -9,12 +9,11 @@ import com.vpaliy.xyzreader.data.scheduler.BaseSchedulerProvider;
 import com.vpaliy.xyzreader.data.scheduler.SchedulerProvider;
 import com.vpaliy.xyzreader.data.source.DataSource;
 import com.vpaliy.xyzreader.data.source.local.LocalSource;
-import com.vpaliy.xyzreader.data.source.qualifier.Local;
-import com.vpaliy.xyzreader.data.source.qualifier.Remote;
 import com.vpaliy.xyzreader.data.source.remote.RemoteSource;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.domain.IRepository;
-
+import com.vpaliy.xyzreader.data.source.qualifier.Local;
+import com.vpaliy.xyzreader.data.source.qualifier.Remote;
 import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;

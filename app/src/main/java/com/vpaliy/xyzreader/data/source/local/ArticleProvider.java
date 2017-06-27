@@ -9,7 +9,7 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 import static com.vpaliy.xyzreader.data.source.local.ArticleContract.PATH_ARTICLE;
 
 @ContentProvider(authority = ArticleProvider.AUTHORITY,
-                database = ArticleDatabase.class)
+                 database = ArticleDatabase.class)
 public class ArticleProvider {
 
     public static final String AUTHORITY = "com.vpaliy.espressoinaction.CoffeeProvider";

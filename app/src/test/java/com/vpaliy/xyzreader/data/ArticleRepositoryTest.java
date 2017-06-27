@@ -97,9 +97,7 @@ public class ArticleRepositoryTest {
         verify(manager).getActiveNetworkInfo();
         verify(cacheStore,times(FakeProvider.LIST_SIZE)).put(anyInt(),any(Article.class));
         verify(context).getSystemService(Context.CONNECTIVITY_SERVICE);
-
     }
-
 
     private void resultShouldNotBeNull(Object result){
         assertThat(result, notNullValue());
