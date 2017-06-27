@@ -1,0 +1,49 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+        classpath 'com.android.tools.build:gradle:2.3.2'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+
+    ext {
+        androidSupportVersion = "25.3.1"
+        daggerVersion = '2.9'
+        rxJavaVersion = '1.1.8'
+        rxAndroidVersion = '1.2.1'
+        rxRelayVersion='2.0.0'
+        glideVersion = "3.7.0"
+        constraintLayoutVersion="1.0.2"
+        butterKnifeVersion = "8.5.1"
+        schematicVersion="0.6.3"
+        retrofitVersion="2.2.0"
+        retrofitConverterVersion="2.1.0"
+        retrofitAdapterVersion="2.1.0"
+        gsonVersion = '2.3'
+        okHttpVersion = '2.5.0'
+
+        /* Testing versions */
+        robolectricVersion = '3.1.1'
+        jUnitVersion = '4.12'
+        testRunnerVersion='0.5'
+        assertJVersion = '1.7.1'
+        mockitoVersion = '2.7.13'
+        dexmakerVersion = '1.0'
+        espressoVersion = '2.2'
+        testingSupportLibVersion = '0.1'
+        rulesVersion = "0.5"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
