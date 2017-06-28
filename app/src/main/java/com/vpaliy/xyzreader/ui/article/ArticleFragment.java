@@ -1,5 +1,12 @@
 package com.vpaliy.xyzreader.ui.article;
 
 
-public class ArticleFragment {
+import com.vpaliy.xyzreader.ui.base.BaseFragment;
+
+public class ArticleFragment extends BaseFragment {
+
+    @Override
+    public void injectDependencies() {
+
+    }
 }
