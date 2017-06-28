@@ -1,6 +1,6 @@
 package com.vpaliy.xyzreader.di.module;
 
-import com.vpaliy.xyzreader.di.scope.ViewScrope;
+import com.vpaliy.xyzreader.di.scope.ViewScope;
 import com.vpaliy.xyzreader.ui.article.ArticleContract;
 import com.vpaliy.xyzreader.ui.article.ArticlePresenter;
 import com.vpaliy.xyzreader.ui.articles.ArticlesContract;
@@ -12,12 +12,14 @@ import dagger.Provides;
 @Module
 public class PresenterModule {
 
-    @ViewScrope @Provides
+    @ViewScope
+    @Provides
     ArticlesContract.Presenter articlesPresenter(ArticlesPresenter presenter){
         return presenter;
     }
 
-    @ViewScrope @Provides
+    @ViewScope
+    @Provides
     ArticleContract.Presenter articlePresenter(ArticlePresenter presenter){
         return presenter;
     }

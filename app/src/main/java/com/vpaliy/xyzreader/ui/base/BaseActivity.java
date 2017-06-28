@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    @Inject
+   // @Inject
     protected Navigator navigator;
 
     @Override

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <!-- Font size -->
+    <dimen name="font_size_medium">16sp</dimen>
+    <dimen name="font_size_big">18sp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="spacing_medium">8dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_big">24dp</dimen>
+    <dimen name="spacing_huge">32dp</dimen>
+    <dimen name="item_bottom_padding">42dp</dimen>
+</resources>

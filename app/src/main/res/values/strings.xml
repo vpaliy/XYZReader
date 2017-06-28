@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">XYZReader</string>
+    <string name="articles_layout_manager">StaggeredGridLayoutManager</string>
 </resources>

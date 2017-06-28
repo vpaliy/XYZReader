@@ -1,7 +1,7 @@
 package com.vpaliy.xyzreader.ui.articles;
 
 import com.vpaliy.xyzreader.data.scheduler.BaseSchedulerProvider;
-import com.vpaliy.xyzreader.di.scope.ViewScrope;
+import com.vpaliy.xyzreader.di.scope.ViewScope;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.domain.IRepository;
 import java.util.List;
@@ -11,7 +11,7 @@ import rx.subscriptions.CompositeSubscription;
 import static com.vpaliy.xyzreader.ui.articles.ArticlesContract.View;
 import static dagger.internal.Preconditions.checkNotNull;
 
-@ViewScrope
+@ViewScope
 public class ArticlesPresenter implements ArticlesContract.Presenter {
 
     private View view;
