@@ -2,6 +2,9 @@ package com.vpaliy.xyzreader.di.module;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.vpaliy.xyzreader.data.source.remote.ArticleService;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
@@ -12,6 +15,7 @@ import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.OkHttpClient.Builder;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -46,22 +50,24 @@ public class NetworkModule {
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient(@NonNull Context context, @NonNull Interceptor interceptor) {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+        Builder builder = new Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
                 .cache(new Cache(context.getCacheDir(), CACHE_SIZE));
-
         return builder.build();
     }
 
     @Provides
     @Singleton
     Retrofit provideRetrofit(OkHttpClient okHttpClient) {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();

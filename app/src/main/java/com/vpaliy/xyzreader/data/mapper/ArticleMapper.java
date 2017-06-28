@@ -1,5 +1,7 @@
 package com.vpaliy.xyzreader.data.mapper;
 
+import android.util.Log;
+
 import com.vpaliy.xyzreader.data.ArticleEntity;
 import com.vpaliy.xyzreader.domain.Article;
 

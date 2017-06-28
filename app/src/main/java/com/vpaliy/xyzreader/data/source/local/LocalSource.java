@@ -8,9 +8,12 @@ import com.vpaliy.xyzreader.data.source.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import rx.Observable;
 import static com.vpaliy.xyzreader.data.source.local.ArticleProvider.Articles.ARTICLES;
 
+@Singleton
 public class LocalSource extends DataSource<ArticleEntity> {
 
     private ContentResolver contentResolver;
@@ -37,7 +40,6 @@ public class LocalSource extends DataSource<ArticleEntity> {
                 while(cursor.moveToNext()){
                     result.add(DatabaseUtils.toEntity(cursor));
                 }
-                //
                 if(!cursor.isClosed()) cursor.close();
             }
             return result;
@@ -46,6 +48,6 @@ public class LocalSource extends DataSource<ArticleEntity> {
 
     @Override
     public void insert(ArticleEntity item) {
-        contentResolver.insert(ARTICLES,DatabaseUtils.toValue(item));
+        //contentResolver.insert(ARTICLES,DatabaseUtils.toValue(item));
     }
 }

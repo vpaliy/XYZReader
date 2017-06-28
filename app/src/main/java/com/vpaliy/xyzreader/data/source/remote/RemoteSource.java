@@ -2,6 +2,9 @@ package com.vpaliy.xyzreader.data.source.remote;
 
 import com.vpaliy.xyzreader.data.ArticleEntity;
 import com.vpaliy.xyzreader.data.source.DataSource;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import rx.Observable;
 import javax.inject.Inject;
@@ -19,7 +22,7 @@ public class RemoteSource extends DataSource<ArticleEntity> {
 
     @Override
     public Observable<List<ArticleEntity>> get() {
-        return service.provideArticles();
+       return service.provideArticles();
     }
 
     @Override

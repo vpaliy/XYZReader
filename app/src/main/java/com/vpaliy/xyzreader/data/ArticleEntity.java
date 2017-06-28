@@ -1,13 +1,28 @@
 package com.vpaliy.xyzreader.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ArticleEntity {
 
+    @SerializedName("id")
     private int id;
+
+    @SerializedName("author")
     private String author;
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("body")
     private String body;
+
+    @SerializedName("thumb")
     private String posterUrl;
+
+    @SerializedName("photo")
     private String backdropUrl;
+
+    @SerializedName("published_date")
     private String publishedDate;
 
     public void setPublishedDate(String publishedDate) {

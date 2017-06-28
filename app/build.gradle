@@ -25,6 +25,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {
@@ -40,8 +44,7 @@ dependencies {
     compile "io.reactivex:rxjava:${rxJavaVersion}"
     compile "io.reactivex:rxandroid:${rxAndroidVersion}"
     compile "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
-
-    compile "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    compile "com.google.code.gson:gson:2.7"
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}"
     compile "com.squareup.retrofit2:adapter-rxjava:${retrofitAdapterVersion}"
