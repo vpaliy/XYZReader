@@ -1,4 +1,5 @@
-<android.support.v4.widget.SwipeRefreshLayout android:id="@+id/refresher"
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/refresher"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -7,6 +8,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/articles_list"
         android:clipToPadding="false"
+        tools:listitem="@layout/adapter_article_item"
         android:paddingTop="@dimen/spacing_medium"
         app:layoutManager="@string/articles_layout_manager"
         app:spanCount="@integer/span_count"
@@ -14,4 +16,5 @@
         android:layout_width="match_parent"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" />
+
 </android.support.v4.widget.SwipeRefreshLayout>
