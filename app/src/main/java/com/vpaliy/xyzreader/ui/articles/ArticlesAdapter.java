@@ -2,6 +2,7 @@ package com.vpaliy.xyzreader.ui.articles;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Handler;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -17,6 +18,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.domain.Article;
+import com.vpaliy.xyzreader.ui.base.bus.RxBus;
+import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 import static android.support.v7.graphics.Palette.Swatch;
@@ -28,9 +32,14 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
 
     private List<Article> data;
     private LayoutInflater inflater;
+    private Handler handler;
+    private RxBus rxBus;
+    private boolean isLocked;
 
-    ArticlesAdapter(Context context){
+    ArticlesAdapter(Context context, RxBus rxBus){
         this.data=new ArrayList<>();
+        this.handler=new Handler();
+        this.rxBus=rxBus;
         this.inflater=LayoutInflater.from(context);
     }
 
@@ -39,7 +48,8 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener{
 
         @BindView(R.id.article_image)
         ImageView image;
@@ -59,6 +69,19 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         ViewHolder(View root){
             super(root);
             ButterKnife.bind(this,root);
+            root.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            //if the user clicks more than once
+            if(!isLocked) {
+                isLocked=true;
+                Article article = at(getAdapterPosition());
+                rxBus.send(NavigationEvent.navigate(article.getId()));
+                //release after the details have been launched, 2000ms should be enough
+                handler.postDelayed(ArticlesAdapter.this::unlock,2000);
+            }
         }
 
         void bindData(){
@@ -80,6 +103,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
                         @Override
                         protected void setResource(Bitmap resource) {
                             image.setImageBitmap(resource);
+                            //color the background
                             new Palette.Builder(resource)
                                     .generate(ViewHolder.this::applyPalette);
                         }
@@ -99,6 +123,10 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
             }
         }
 
+    }
+
+    private void unlock(){
+        isLocked=!isLocked;
     }
 
     private Article at(int index){

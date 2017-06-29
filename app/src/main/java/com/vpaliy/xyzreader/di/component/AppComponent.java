@@ -10,6 +10,8 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.domain.IRepository;
 import com.vpaliy.xyzreader.ui.Navigator;
 import com.vpaliy.xyzreader.ui.base.BaseActivity;
+import com.vpaliy.xyzreader.ui.base.bus.RxBus;
+
 import javax.inject.Singleton;
 import dagger.Component;
 
@@ -22,4 +24,5 @@ public interface AppComponent {
     Context context();
     BaseSchedulerProvider scheduler();
     Navigator navigator();
+    RxBus bus();
 }

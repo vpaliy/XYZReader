@@ -3,6 +3,7 @@ package com.vpaliy.xyzreader.di.module;
 import android.content.Context;
 
 import com.vpaliy.xyzreader.ui.Navigator;
+import com.vpaliy.xyzreader.ui.base.bus.RxBus;
 
 import javax.inject.Singleton;
 
@@ -26,5 +27,10 @@ public class ApplicationModule {
     @Singleton @Provides
     Navigator provideNavigator(){
         return new Navigator();
+    }
+
+    @Singleton @Provides
+    RxBus provideBus(){
+        return new RxBus();
     }
 }

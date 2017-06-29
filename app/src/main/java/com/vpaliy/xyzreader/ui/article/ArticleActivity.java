@@ -1,8 +1,12 @@
 package com.vpaliy.xyzreader.ui.article;
 
 import android.os.Bundle;
+
+import com.vpaliy.xyzreader.App;
 import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.ui.base.BaseActivity;
+
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 public class ArticleActivity extends BaseActivity{
@@ -14,7 +18,12 @@ public class ArticleActivity extends BaseActivity{
     }
 
     @Override
-    public void injectDependencies() {
+    public void handleEvent(@NonNull Object event) {
 
+    }
+
+    @Override
+    public void injectDependencies() {
+        App.app().component().inject(this);
     }
 }

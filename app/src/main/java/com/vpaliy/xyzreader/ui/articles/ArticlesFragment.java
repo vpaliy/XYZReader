@@ -15,6 +15,8 @@ import com.vpaliy.xyzreader.di.component.DaggerViewComponent;
 import com.vpaliy.xyzreader.di.module.PresenterModule;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
+import com.vpaliy.xyzreader.ui.base.bus.RxBus;
+
 import java.util.List;
 import javax.inject.Inject;
 import butterknife.BindView;
@@ -33,6 +35,9 @@ public class ArticlesFragment extends BaseFragment
     @BindView(R.id.articles_list)
     protected RecyclerView articleList;
 
+    @Inject
+    protected RxBus rxBus;
+
     private ArticlesAdapter adapter;
 
     @Nullable
@@ -49,7 +54,7 @@ public class ArticlesFragment extends BaseFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if(view!=null){
-            adapter=new ArticlesAdapter(getContext());
+            adapter=new ArticlesAdapter(getContext(),rxBus);
             articleList.setAdapter(adapter);
             refresher.setOnRefreshListener(()->presenter.refresh());
             presenter.start();
