@@ -26,11 +26,11 @@
             tools:background="#e57373"
             android:layout_below="@+id/article_image"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 tools:text="I Love San Francisco"
-                android:textSize="20sp"
+                android:textSize="26sp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:fontFamily="sans-serif-medium"
@@ -44,7 +44,9 @@
             <TextView
                 android:id="@+id/article_author"
                 tools:text="Walter Paliy"
-                android:padding="4dp"
+                android:drawablePadding="4dp"
+                android:drawableLeft="@drawable/ic_feather_"
+                android:gravity="center"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/white_50"
                 android:layout_width="wrap_content"
@@ -64,13 +66,9 @@
                 android:textColor="@color/white_50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@+id/article_author"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintHorizontal_bias="0.9"
-                app:layout_constraintTop_toTopOf="@+id/article_author"
-                app:layout_constraintBottom_toBottomOf="@+id/article_author" />
+                app:layout_constraintLeft_toLeftOf="@+id/article_author"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:layout_constraintTop_toBottomOf="@+id/article_author" />
 
         </android.support.constraint.ConstraintLayout>
     </RelativeLayout>
