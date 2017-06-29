@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
     android:id="@+id/article_body"
-    android:layout_width="match_parent"
+    android:gravity="left"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:text="Article content body"
+    android:autoLink="web"
+    style="?android:attr/textAppearanceMedium"
+    android:textColor="@android:color/black"
+    android:linksClickable="true"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-</TextView>
+    xmlns:android="http://schemas.android.com/apk/res/android"/>

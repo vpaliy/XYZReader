@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.ViewHolder> {
 
     private List<String> data;

@@ -14,10 +14,14 @@ import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.format.Time;
 import android.view.LayoutInflater;
@@ -132,6 +136,7 @@ public class ArticleFragment extends BaseFragment
     }
 
     private List<String> splitString(String body){
+        body= Html.fromHtml(body).toString();
         int size=body.length();
         int partSize=size/100;
         List<String> list=new ArrayList<>(partSize);

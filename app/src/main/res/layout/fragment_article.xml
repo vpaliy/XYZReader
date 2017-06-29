@@ -107,9 +107,10 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/body_recycler"
         android:padding="@dimen/spacing_big"
-        app:layoutManager="@string/text_layout_manager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:spanCount="@integer/span_count"
+        app:layoutManager="@string/articles_layout_manager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/layout_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
