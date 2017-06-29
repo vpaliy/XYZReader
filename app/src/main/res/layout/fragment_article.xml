@@ -1,8 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="false">
 
-</LinearLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        app:elevation="@dimen/app_bar_elevation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/main.collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            app:titleEnabled="false"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp"
+            android:fitsSystemWindows="false">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.vpaliy.xyzreader.ui.view.RatioImageView
+                    tools:src="@drawable/image"
+                    app:image_ration="0.8"
+                    android:scaleType="centerCrop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:id="@+id/article_image" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    tools:background="#e57373"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/article_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    android:id="@+id/background"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    tools:text="I Love San Francisco"
+                    style="@style/Widget.MainTitle"
+                    android:textColor="@color/white_50"
+                    android:id="@+id/article_title"
+                    app:layout_constraintTop_toTopOf="@+id/background"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginStart="@dimen/spacing_medium"
+                    android:layout_marginLeft="@dimen/spacing_medium"
+                    app:layout_constraintLeft_toLeftOf="@+id/background" />
+
+                <TextView
+                    android:id="@+id/article_author"
+                    tools:text="Walter Paliy"
+                    android:drawableStart="@drawable/ic_feather_"
+                    android:drawableLeft="@drawable/ic_feather_"
+                    android:textColor="@color/white_50"
+                    style="@style/Widget.Subtitle"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/article_title"
+                    app:layout_constraintLeft_toLeftOf="@+id/article_title" />
+
+                <TextView
+                    tools:text="4-th of July"
+                    android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                    android:drawableStart="@drawable/ic_date_range_black_24dp"
+                    android:id="@+id/article_date"
+                    style="@style/Widget.Subtitle"
+                    android:textColor="@color/white_50"
+                    app:layout_constraintTop_toTopOf="@+id/article_author"
+                    app:layout_constraintBottom_toBottomOf="@+id/article_author"
+                    app:layout_constraintLeft_toRightOf="@+id/article_author"
+                    android:layout_marginStart="@dimen/spacing_big"
+                    android:layout_marginLeft="@dimen/spacing_big"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/actionBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="pin" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/article_body"
+            android:padding="@dimen/spacing_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        app:fabSize="normal"
+        android:layout_marginEnd="@dimen/spacing_big"
+        android:layout_marginRight="@dimen/spacing_big"
+        app:elevation="@dimen/fab_elevation"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_anchor="@id/appBarLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</android.support.design.widget.CoordinatorLayout>

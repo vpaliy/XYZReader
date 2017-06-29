@@ -20,11 +20,11 @@ import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.bus.RxBus;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
-
 import java.util.ArrayList;
 import java.util.List;
 import static android.support.v7.graphics.Palette.Swatch;
 import butterknife.ButterKnife;
+
 import butterknife.BindView;
 
 
