@@ -15,7 +15,9 @@ import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.text.format.Time;
 import android.view.LayoutInflater;
@@ -25,6 +27,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.inject.Inject;
 import butterknife.BindView;
 
@@ -32,6 +40,7 @@ public class ArticleFragment extends BaseFragment
         implements ArticleContract.View{
 
     private Presenter presenter;
+    private TextContentAdapter adapter;
     private int articleId;
 
     @BindView(R.id.article_image)
@@ -43,14 +52,14 @@ public class ArticleFragment extends BaseFragment
     @BindView(R.id.article_title)
     protected TextView articleTitle;
 
-    @BindView(R.id.article_body)
-    protected TextView articleBody;
-
     @BindView(R.id.article_date)
     protected TextView articleDate;
 
     @BindView(R.id.background)
     protected View background;
+
+    @BindView(R.id.body_recycler)
+    protected RecyclerView bodyRecycler;
 
     public static ArticleFragment newInstance(Bundle extras){
         ArticleFragment fragment=new ArticleFragment();
@@ -89,6 +98,8 @@ public class ArticleFragment extends BaseFragment
         super.onViewCreated(view, savedInstanceState);
         if(view!=null){
             presenter.loadArticle(articleId);
+            adapter=new TextContentAdapter(getContext());
+            bodyRecycler.setAdapter(adapter);
         }
     }
 
@@ -109,15 +120,27 @@ public class ArticleFragment extends BaseFragment
 
     @Override
     public void showArticle(Article article) {
-        Time time=new Time();
+        Time time = new Time();
         time.parse3339(article.getPublishedDate());
         articleTitle.setText(article.getTitle());
         articleAuthor.setText(article.getAuthor());
         articleDate.setText(DateUtils.getRelativeTimeSpanString(time.toMillis(false),
                 System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
                 DateUtils.FORMAT_ABBREV_ALL).toString());
-        articleBody.post(()->articleBody.setText(article.getBody()));//  articleBody.setText(article.getBody());
         loadImage(article.getBackdropUrl());
+        adapter.setData(splitString(article.getBody()));
+    }
+
+    private List<String> splitString(String body){
+        int size=body.length();
+        int partSize=size/100;
+        List<String> list=new ArrayList<>(partSize);
+        int lastIndex=0;
+        for(int index=partSize;index<size;index+=partSize){
+            list.add(body.substring(lastIndex,index));
+            lastIndex=index;
+        }
+        return list;
     }
 
     private void loadImage(String imageUrl){

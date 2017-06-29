@@ -28,15 +28,14 @@
 
                 <com.vpaliy.xyzreader.ui.view.RatioImageView
                     tools:src="@drawable/image"
-                    app:image_ration="0.8"
                     android:scaleType="centerCrop"
-                    android:layout_width="wrap_content"
+                    app:image_ration="0.8"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:id="@+id/article_image" />
-
 
                 <View
                     android:layout_width="0dp"
@@ -59,7 +58,9 @@
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:layout_marginStart="@dimen/spacing_medium"
                     android:layout_marginLeft="@dimen/spacing_medium"
-                    app:layout_constraintLeft_toLeftOf="@+id/background" />
+                    app:layout_constraintLeft_toLeftOf="@+id/background"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
 
                 <TextView
                     android:id="@+id/article_author"
@@ -70,7 +71,9 @@
                     style="@style/Widget.Subtitle"
                     android:layout_marginTop="@dimen/spacing_medium"
                     app:layout_constraintTop_toBottomOf="@+id/article_title"
-                    app:layout_constraintLeft_toLeftOf="@+id/article_title" />
+                    app:layout_constraintLeft_toLeftOf="@+id/article_title"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
 
                 <TextView
                     tools:text="4-th of July"
@@ -84,7 +87,9 @@
                     app:layout_constraintLeft_toRightOf="@+id/article_author"
                     android:layout_marginStart="@dimen/spacing_big"
                     android:layout_marginLeft="@dimen/spacing_big"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="1.0"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -98,16 +103,16 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/body_recycler"
+        android:padding="@dimen/spacing_big"
+        app:layoutManager="@string/text_layout_manager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:spanCount="@integer/span_count"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/article_body"
-            android:padding="@dimen/spacing_big"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
