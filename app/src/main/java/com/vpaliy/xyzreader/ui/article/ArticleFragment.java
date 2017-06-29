@@ -1,5 +1,10 @@
 package com.vpaliy.xyzreader.ui.article;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.vpaliy.xyzreader.App;
 import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.di.component.DaggerViewComponent;
@@ -8,7 +13,11 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.graphics.Palette;
+import android.text.format.DateUtils;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +48,9 @@ public class ArticleFragment extends BaseFragment
 
     @BindView(R.id.article_date)
     protected TextView articleDate;
+
+    @BindView(R.id.background)
+    protected View background;
 
     public static ArticleFragment newInstance(Bundle extras){
         ArticleFragment fragment=new ArticleFragment();
@@ -97,15 +109,47 @@ public class ArticleFragment extends BaseFragment
 
     @Override
     public void showArticle(Article article) {
-        articleAuthor.setText(article.getAuthor());
-        articleBody.setText(article.getBody());
+        Time time=new Time();
+        time.parse3339(article.getPublishedDate());
         articleTitle.setText(article.getTitle());
+        articleAuthor.setText(article.getAuthor());
+        articleDate.setText(DateUtils.getRelativeTimeSpanString(time.toMillis(false),
+                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                DateUtils.FORMAT_ABBREV_ALL).toString());
+        articleBody.post(()->articleBody.setText(article.getBody()));//  articleBody.setText(article.getBody());
         loadImage(article.getBackdropUrl());
     }
 
     private void loadImage(String imageUrl){
-
+        Glide.with(getContext())
+                .load(imageUrl)
+                .asBitmap()
+                .centerCrop()
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .into(new ImageViewTarget<Bitmap>(image) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        image.setImageBitmap(resource);
+                        new Palette.Builder(resource)
+                                .generate(ArticleFragment.this::applyPalette);
+                    }
+                });
     }
+
+    private void applyPalette(Palette palette){
+        if (palette != null) {
+            Palette.Swatch result=palette.getDominantSwatch();
+            if(palette.getDarkVibrantSwatch()!=null){
+                result=palette.getDarkVibrantSwatch();
+            }
+            else if(palette.getDarkMutedSwatch()!=null){
+                result=palette.getDarkMutedSwatch();
+            }
+            background.setBackgroundColor(result.getRgb());
+        }
+    }
+
 
     @Override @Inject
     public void attachPresenter(@NonNull Presenter presenter) {
