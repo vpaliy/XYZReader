@@ -13,5 +13,6 @@
     <dimen name="spacing_large">16dp</dimen>
     <dimen name="spacing_big">24dp</dimen>
     <dimen name="spacing_huge">32dp</dimen>
+    <dimen name="drawable_padding">4dp</dimen>
     <dimen name="item_bottom_padding">42dp</dimen>
 </resources>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_medium"
-    app:cardElevation="4dp"
+    app:cardElevation="@dimen/cardview_default_elevation"
     app:cardCornerRadius="@dimen/cardview_default_radius"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -30,13 +30,8 @@
 
             <TextView
                 tools:text="I Love San Francisco"
-                android:textSize="26sp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:fontFamily="sans-serif-medium"
+                style="@style/Widget.MainTitle"
                 android:textColor="@color/white_50"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/article_title"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent" />
@@ -44,31 +39,27 @@
             <TextView
                 android:id="@+id/article_author"
                 tools:text="Walter Paliy"
-                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/ic_feather_"
                 android:drawableLeft="@drawable/ic_feather_"
-                android:gravity="center"
-                android:fontFamily="sans-serif-medium"
                 android:textColor="@color/white_50"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Widget.Subtitle"
                 android:layout_marginTop="@dimen/spacing_medium"
                 app:layout_constraintTop_toBottomOf="@+id/article_title"
                 app:layout_constraintLeft_toLeftOf="@+id/article_title" />
 
             <TextView
                 android:text="4-th of July"
-                android:drawablePadding="4dp"
                 android:drawableLeft="@drawable/ic_date_range_black_24dp"
                 android:drawableStart="@drawable/ic_date_range_black_24dp"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
                 android:id="@+id/article_date"
+                style="@style/Widget.Subtitle"
                 android:textColor="@color/white_50"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@+id/article_author"
-                android:layout_marginTop="@dimen/spacing_medium"
-                app:layout_constraintTop_toBottomOf="@+id/article_author" />
+                app:layout_constraintTop_toTopOf="@+id/article_author"
+                app:layout_constraintBottom_toBottomOf="@+id/article_author"
+                app:layout_constraintLeft_toRightOf="@+id/article_author"
+                android:layout_marginStart="@dimen/spacing_big"
+                android:layout_marginLeft="@dimen/spacing_big"
+                app:layout_constraintVertical_bias="1.0" />
 
         </android.support.constraint.ConstraintLayout>
     </RelativeLayout>
