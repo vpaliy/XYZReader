@@ -22,8 +22,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,6 +106,7 @@ public class ArticleFragment extends BaseFragment
             presenter.loadArticle(articleId);
             adapter=new TextContentAdapter(getContext());
             bodyRecycler.setAdapter(adapter);
+            bodyRecycler.setHasFixedSize(true);
         }
     }
 
@@ -135,16 +138,22 @@ public class ArticleFragment extends BaseFragment
         adapter.setData(splitString(article.getBody()));
     }
 
+    //TODO move to another package, it's not the responsibility of this fragment
     private List<String> splitString(String body){
         body= Html.fromHtml(body).toString();
-        int size=body.length();
-        int partSize=size/100;
-        List<String> list=new ArrayList<>(partSize);
-        int lastIndex=0;
-        for(int index=partSize;index<size;index+=partSize){
-            list.add(body.substring(lastIndex,index));
-            lastIndex=index;
+        TextUtils.SimpleStringSplitter splitter=new TextUtils.SimpleStringSplitter('.');
+        splitter.setString(body);
+        List<String> list=new ArrayList<>();
+        while(splitter.hasNext()) {
+            StringBuilder builder = new StringBuilder();
+            for(int index=0;index<10;index++){
+                builder.append(splitter.next());
+                builder.append('.');
+                if(!splitter.hasNext()) break;
+            }
+            list.add(builder.toString());
         }
+
         return list;
     }
 
