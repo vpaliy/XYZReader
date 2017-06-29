@@ -62,6 +62,7 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
     private void catchError(Throwable ex){
         ex.printStackTrace();
         view.showErrorMessage();
+        view.setLoadingIndicator(false);
     }
 
     @Override
