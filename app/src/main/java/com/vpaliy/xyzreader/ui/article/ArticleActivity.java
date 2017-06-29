@@ -1,5 +1,6 @@
 package com.vpaliy.xyzreader.ui.article;
 
+import android.os.Build;
 import android.os.Bundle;
 import com.vpaliy.xyzreader.App;
 import com.vpaliy.xyzreader.R;
@@ -12,6 +13,9 @@ public class ArticleActivity extends BaseActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
+            postponeEnterTransition();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
         if(savedInstanceState==null){

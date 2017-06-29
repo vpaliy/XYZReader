@@ -2,8 +2,11 @@ package com.vpaliy.xyzreader.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
+
+import com.vpaliy.xyzreader.R;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -30,6 +33,13 @@ public abstract class BaseFragment extends Fragment{
         super.onDestroy();
         if(unbinder!=null) {
             unbinder.unbind();
+        }
+    }
+
+    protected void showMessage(String message){
+        if(getView()!=null){
+            Snackbar.make(getView(),message, getResources()
+                    .getInteger(R.integer.message_duration));
         }
     }
 }

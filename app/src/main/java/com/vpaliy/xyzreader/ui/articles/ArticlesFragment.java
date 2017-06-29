@@ -1,9 +1,6 @@
 package com.vpaliy.xyzreader.ui.articles;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,8 +13,9 @@ import com.vpaliy.xyzreader.di.module.PresenterModule;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.bus.RxBus;
-
 import java.util.List;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import javax.inject.Inject;
 import butterknife.BindView;
 
@@ -68,20 +66,13 @@ public class ArticlesFragment extends BaseFragment
     }
 
     @Override
-    public void showEmptyMessage() {
-        showMessage(getString(R.string.app_name));
+    public void showErrorMessage() {
+        showMessage(getString(R.string.error_message));
     }
 
     @Override
-    public void showErrorMessage() {
-        showMessage(getString(R.string.app_name));
-    }
-
-    private void showMessage(String message){
-        if(getView()!=null){
-            Snackbar.make(getView(),message, getResources()
-                    .getInteger(R.integer.message_duration));
-        }
+    public void showEmptyMessage() {
+        showMessage(getString(R.string.empty_message));
     }
 
     @Override

@@ -3,4 +3,7 @@
     <string name="articles_layout_manager">StaggeredGridLayoutManager</string>
     <string name="text_layout_manager">GridLayoutManager</string>
     <string name="transitionName">article_transition_name</string>
+
+    <string name="error_message">An error has occurred</string>
+    <string name="empty_message">No article has been found</string>
 </resources>

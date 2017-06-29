@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.article.ArticleActivity">
+        <activity android:name=".ui.article.ArticleActivity"
+                 android:theme="@style/DetailsTheme">
         </activity>
 
         <provider

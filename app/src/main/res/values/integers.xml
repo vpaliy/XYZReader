@@ -2,4 +2,6 @@
     <integer name="page_fading_duration">300</integer>
     <integer name="span_count">1</integer>
     <integer name="message_duration">300</integer>
+
+    <integer name="transition_duration">300</integer>
 </resources>

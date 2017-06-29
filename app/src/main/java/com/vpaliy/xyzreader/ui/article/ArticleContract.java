@@ -18,7 +18,6 @@ public interface ArticleContract {
         void showArticle(Article article);
         void showErrorMessage();
         void showEmptyMessage();
-        void setLoadingIndicator(boolean isLoading);
         void attachPresenter(@NonNull Presenter presenter);
     }
 }

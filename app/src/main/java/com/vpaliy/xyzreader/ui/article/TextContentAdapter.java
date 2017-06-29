@@ -15,13 +15,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-public class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.ViewHolder> {
+class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.ViewHolder> {
 
     private List<String> data;
     private LayoutInflater inflater;
 
-    public TextContentAdapter(Context context){
+    TextContentAdapter(Context context){
         this.inflater=LayoutInflater.from(context);
         this.data=new ArrayList<>();
     }

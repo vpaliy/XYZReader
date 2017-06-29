@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Details Theme which supports shared element transitions. -->
+    <style name="DetailsTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Set up the transition mode -->
+
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+
+        <item name="android:windowSharedElementEnterTransition">@transition/enter</item>
+        <item name="android:windowSharedElementExitTransition">@transition/exit</item>
+        <item name="android:windowSharedElementReenterTransition">@transition/exit</item>
+
+        <item name="android:windowExitTransition">@transition/enter_exit</item>
+        <item name="android:windowEnterTransition">@transition/enter_exit</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:windowExitTransition">@transition/enter_exit</item>
+        <item name="android:windowEnterTransition">@transition/enter_exit</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>

@@ -3,7 +3,6 @@ package com.vpaliy.xyzreader.ui.article;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.target.ImageViewTarget;
 import com.vpaliy.xyzreader.App;
 import com.vpaliy.xyzreader.R;
@@ -14,31 +13,25 @@ import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.text.format.Time;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.inject.Inject;
 import butterknife.BindView;
 
@@ -64,6 +57,7 @@ public class ArticleFragment extends BaseFragment
     @BindView(R.id.background)
     protected View background;
 
+    //A text could be extremely large, so using a single TextView is not an option.
     @BindView(R.id.body_recycler)
     protected RecyclerView bodyRecycler;
 
@@ -112,17 +106,12 @@ public class ArticleFragment extends BaseFragment
 
     @Override
     public void showErrorMessage() {
-
+        showMessage(getString(R.string.error_message));
     }
 
     @Override
     public void showEmptyMessage() {
-
-    }
-
-    @Override
-    public void setLoadingIndicator(boolean isLoading) {
-
+        showMessage(getString(R.string.empty_message));
     }
 
     @Override
@@ -170,10 +159,25 @@ public class ArticleFragment extends BaseFragment
                         image.setImageBitmap(resource);
                         new Palette.Builder(resource)
                                 .generate(ArticleFragment.this::applyPalette);
+                        if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
+                            image.setTransitionName(Integer.toString(articleId));
+                            startTransition();
+                        }
                     }
                 });
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void startTransition(){
+        image.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                image.getViewTreeObserver().removeOnPreDrawListener(this);
+                getActivity().startPostponedEnterTransition();
+                return true;
+            }
+        });
+    }
     private void applyPalette(Palette palette){
         if (palette != null) {
             Palette.Swatch result=palette.getDominantSwatch();
