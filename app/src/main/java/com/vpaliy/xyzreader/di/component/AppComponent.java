@@ -8,6 +8,7 @@ import com.vpaliy.xyzreader.di.module.DataModule;
 import com.vpaliy.xyzreader.di.module.NetworkModule;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.domain.IRepository;
+import com.vpaliy.xyzreader.ui.Navigator;
 import com.vpaliy.xyzreader.ui.base.BaseActivity;
 import javax.inject.Singleton;
 import dagger.Component;
@@ -20,4 +21,5 @@ public interface AppComponent {
     IRepository<Article> repository();
     Context context();
     BaseSchedulerProvider scheduler();
+    Navigator navigator();
 }

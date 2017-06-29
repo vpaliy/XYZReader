@@ -2,6 +2,8 @@ package com.vpaliy.xyzreader.di.module;
 
 import android.content.Context;
 
+import com.vpaliy.xyzreader.ui.Navigator;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -19,5 +21,10 @@ public class ApplicationModule {
     @Singleton @Provides
     Context provideContext(){
         return context;
+    }
+
+    @Singleton @Provides
+    Navigator provideNavigator(){
+        return new Navigator();
     }
 }
