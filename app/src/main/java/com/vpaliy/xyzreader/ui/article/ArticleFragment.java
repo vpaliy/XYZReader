@@ -12,11 +12,19 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
+import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -29,11 +37,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import javax.inject.Inject;
 import butterknife.BindView;
+
 
 public class ArticleFragment extends BaseFragment
         implements ArticleContract.View{
@@ -56,6 +66,15 @@ public class ArticleFragment extends BaseFragment
 
     @BindView(R.id.background)
     protected View background;
+
+    @BindView(R.id.actionBar)
+    protected Toolbar toolbar;
+
+    @BindView(R.id.floatingActionButton)
+    protected FloatingActionButton actionButton;
+
+    @BindView(R.id.main_collapsing)
+    protected CollapsingToolbarLayout collapsingToolbarLayout;
 
     //A text could be extremely large, so using a single TextView is not an option.
     @BindView(R.id.body_recycler)
@@ -101,7 +120,24 @@ public class ArticleFragment extends BaseFragment
             adapter=new TextContentAdapter(getContext());
             bodyRecycler.setAdapter(adapter);
             bodyRecycler.setHasFixedSize(true);
+            setUpActionBar();
         }
+    }
+
+    private void setUpActionBar(){
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(R.drawable.ic_back_arrow);
+        toolbar.setNavigationOnClickListener(view->{
+            if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
+                getActivity().finishAfterTransition();
+            }else{
+                getActivity().finish();
+            }
+        });
+
+        collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(getContext(),android.R.color.transparent));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+        ActionBarUtils.fixStatusBarHeight(toolbar);
     }
 
     @Override
@@ -118,6 +154,7 @@ public class ArticleFragment extends BaseFragment
     public void showArticle(Article article) {
         Time time = new Time();
         time.parse3339(article.getPublishedDate());
+        collapsingToolbarLayout.setTitle(article.getTitle());
         articleTitle.setText(article.getTitle());
         articleAuthor.setText(article.getAuthor());
         articleDate.setText(DateUtils.getRelativeTimeSpanString(time.toMillis(false),
@@ -162,6 +199,11 @@ public class ArticleFragment extends BaseFragment
                         if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
                             image.setTransitionName(Integer.toString(articleId));
                             startTransition();
+                            ViewCompat.animate(actionButton)
+                                    .scaleX(1).scaleY(1)
+                                    .setDuration(getResources().getInteger(R.integer.transition_duration))
+                                    .start();
+
                         }
                     }
                 });
@@ -180,14 +222,10 @@ public class ArticleFragment extends BaseFragment
     }
     private void applyPalette(Palette palette){
         if (palette != null) {
-            Palette.Swatch result=palette.getDominantSwatch();
-            if(palette.getDarkVibrantSwatch()!=null){
-                result=palette.getDarkVibrantSwatch();
-            }
-            else if(palette.getDarkMutedSwatch()!=null){
-                result=palette.getDarkMutedSwatch();
-            }
-            background.setBackgroundColor(result.getRgb());
+            background.setBackgroundColor(ActionBarUtils.getDominantColor(palette));
+            final int secondaryColor=ActionBarUtils.getSecondaryColor(palette);
+            actionButton.setBackgroundTintList(ColorStateList.valueOf(secondaryColor));
+            collapsingToolbarLayout.setContentScrimColor(secondaryColor);
         }
     }
 

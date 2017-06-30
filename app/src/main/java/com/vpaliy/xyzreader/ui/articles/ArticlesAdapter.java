@@ -20,6 +20,8 @@ import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.bus.RxBus;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
+import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import static android.support.v7.graphics.Palette.Swatch;
@@ -111,16 +113,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         }
 
         private void applyPalette(Palette palette){
-            if (palette != null) {
-                Swatch result=palette.getDominantSwatch();
-                if(palette.getDarkVibrantSwatch()!=null){
-                    result=palette.getDarkVibrantSwatch();
-                }
-                else if(palette.getDarkMutedSwatch()!=null){
-                    result=palette.getDarkMutedSwatch();
-                }
-                background.setBackgroundColor(result.getRgb());
-            }
+            background.setBackgroundColor(ActionBarUtils.getDominantColor(palette));
         }
 
     }
