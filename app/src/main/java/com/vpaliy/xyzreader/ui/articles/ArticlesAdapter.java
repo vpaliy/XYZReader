@@ -80,7 +80,8 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
             if(!isLocked) {
                 isLocked=true;
                 Article article = at(getAdapterPosition());
-                rxBus.send(NavigationEvent.navigate(image,article.getId()));
+                rxBus.send(NavigationEvent.navigate(image,background,articleDate,
+                        articleAuthor,articleTitle,article.getId()));
                 //release after the details have been launched, 2000ms should be enough
                 handler.postDelayed(ArticlesAdapter.this::unlock,2000);
             }

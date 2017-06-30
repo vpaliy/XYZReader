@@ -197,7 +197,11 @@ public class ArticleFragment extends BaseFragment
                         new Palette.Builder(resource)
                                 .generate(ArticleFragment.this::applyPalette);
                         if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
-                            image.setTransitionName(Integer.toString(articleId));
+                            image.setTransitionName(getString(R.string.image_transition)+articleId);
+                            background.setTransitionName(getString(R.string.background_transition)+articleId);
+                            articleTitle.setTransitionName(getString(R.string.title_transition)+articleId);
+                            articleDate.setTransitionName(getString(R.string.date_transition)+articleId);
+                            articleAuthor.setTransitionName(getString(R.string.author_transition)+articleId);
                             startTransition();
                             ViewCompat.animate(actionButton)
                                     .scaleX(1).scaleY(1)

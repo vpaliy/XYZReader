@@ -2,7 +2,13 @@
     <string name="app_name">XYZReader</string>
     <string name="articles_layout_manager">StaggeredGridLayoutManager</string>
     <string name="text_layout_manager">GridLayoutManager</string>
-    <string name="transitionName">article_transition_name</string>
+
+    <string name="image_transition">image_trans_name</string>
+    <string name="background_transition">background_trans_name</string>
+
+    <string name="title_transition">title_trans_name</string>
+    <string name="author_transition">author_trans_name</string>
+    <string name="date_transition">date_trans_name</string>
 
     <string name="error_message">An error has occurred</string>
     <string name="empty_message">No article has been found</string>
