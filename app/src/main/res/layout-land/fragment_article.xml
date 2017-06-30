@@ -27,25 +27,27 @@
                 <com.vpaliy.xyzreader.ui.view.RatioImageView
                     tools:src="@drawable/image"
                     android:scaleType="centerCrop"
-                    app:image_ration="0.8"
+                    app:image_ration="0.4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    android:id="@+id/article_image" />
+                    android:id="@+id/article_image"
+                    android:layout_marginTop="3dp"
+                    app:layout_constraintHorizontal_bias="1.0" />
 
                 <View
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_width="400dp"
+                    android:layout_height="0dp"
                     tools:background="#e57373"
+
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/article_image"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     android:id="@+id/background"
-                    app:layout_constraintVertical_bias="0.0" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline" />
 
                 <TextView
                     tools:text="I Love San Francisco"
@@ -89,6 +91,13 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content" />
 
+                <android.support.constraint.Guideline
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/guideline"
+                    app:layout_constraintGuide_begin="167dp"
+                    android:orientation="horizontal" />
+
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.Toolbar
@@ -105,11 +114,12 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/body_recycler"
         app:spanCount="@integer/span_count"
+        android:layout_gravity="center"
         android:padding="@dimen/spacing_medium"
         app:layoutManager="@string/articles_layout_manager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/layout_content"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton

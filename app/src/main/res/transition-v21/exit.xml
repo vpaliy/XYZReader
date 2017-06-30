@@ -5,7 +5,8 @@
         <target android:excludeId="@android:id/statusBarBackground"/>
         <target android:excludeId="@android:id/navigationBarBackground"/>
     </targets>
-    <changeClipBounds />
     <changeBounds/>
+    <changeTransform/>
+    <changeClipBounds />
     <changeImageTransform/>
 </transitionSet>
