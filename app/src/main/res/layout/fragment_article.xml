@@ -115,6 +115,8 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         app:fabSize="normal"
+        android:scaleX="0"
+        android:scaleY="0"
         android:src="@drawable/ic_share"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_elevation"

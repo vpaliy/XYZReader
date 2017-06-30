@@ -20,8 +20,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.SharedElementCallback;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -164,7 +164,6 @@ public class ArticleFragment extends BaseFragment
         adapter.setData(splitString(article.getBody()));
     }
 
-    //TODO move to another package, it's not the responsibility of this fragment
     private List<String> splitString(String body){
         body= Html.fromHtml(body).toString();
         TextUtils.SimpleStringSplitter splitter=new TextUtils.SimpleStringSplitter('.');
@@ -203,11 +202,6 @@ public class ArticleFragment extends BaseFragment
                             articleDate.setTransitionName(getString(R.string.date_transition)+articleId);
                             articleAuthor.setTransitionName(getString(R.string.author_transition)+articleId);
                             startTransition();
-                            ViewCompat.animate(actionButton)
-                                    .scaleX(1).scaleY(1)
-                                    .setDuration(getResources().getInteger(R.integer.transition_duration))
-                                    .start();
-
                         }
                     }
                 });
