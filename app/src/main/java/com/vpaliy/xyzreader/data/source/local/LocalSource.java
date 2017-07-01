@@ -1,6 +1,7 @@
 package com.vpaliy.xyzreader.data.source.local;
 
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import com.vpaliy.xyzreader.data.ArticleEntity;
@@ -48,6 +49,9 @@ public class LocalSource extends DataSource<ArticleEntity> {
 
     @Override
     public void insert(ArticleEntity item) {
-        contentResolver.insert(ARTICLES,DatabaseUtils.toValue(item));
+        ContentValues values=DatabaseUtils.toValue(item);
+        if(values!=null){
+            contentResolver.insert(ARTICLES,values);
+        }
     }
 }

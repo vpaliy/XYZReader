@@ -12,7 +12,6 @@ public class DatabaseUtils {
     public static ContentValues toValue(ArticleEntity entity){
         if(entity!=null) {
             ContentValues values = new ContentValues();
-            values.put(ARTICLE_ID, entity.getId());
             values.put(ARTICLE_AUTHOR,entity.getAuthor());
             values.put(ARTICLE_TITLE, entity.getTitle());
             values.put(ARTICLE_BODY, entity.getBody());

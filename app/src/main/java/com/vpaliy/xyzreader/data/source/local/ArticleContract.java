@@ -1,7 +1,9 @@
 package com.vpaliy.xyzreader.data.source.local;
 
+import net.simonvt.schematic.annotation.AutoIncrement;
 import net.simonvt.schematic.annotation.DataType;
 import net.simonvt.schematic.annotation.PrimaryKey;
+import net.simonvt.schematic.annotation.Unique;
 
 public class ArticleContract {
 
@@ -10,6 +12,7 @@ public class ArticleContract {
     public interface ArticleColumns{
         @DataType(DataType.Type.INTEGER)
         @PrimaryKey
+        @Unique
         String ARTICLE_ID="article_id";
 
         @DataType(DataType.Type.TEXT)
