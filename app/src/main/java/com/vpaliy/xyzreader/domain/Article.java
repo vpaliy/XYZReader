@@ -1,5 +1,13 @@
 package com.vpaliy.xyzreader.domain;
 
+import android.text.Html;
+import android.text.TextUtils;
+import android.text.format.DateUtils;
+import android.text.format.Time;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Article {
 
     private int id;
@@ -44,6 +52,32 @@ public class Article {
 
     public int getId() {
         return id;
+    }
+
+    public String getFormattedDate(){
+        Time time = new Time();
+        time.parse3339(getPublishedDate());
+        return DateUtils.getRelativeTimeSpanString(time.toMillis(false),
+                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                DateUtils.FORMAT_ABBREV_ALL).toString();
+    }
+
+    public List<String> getSplitBody(){
+        body= Html.fromHtml(body).toString();
+        TextUtils.SimpleStringSplitter splitter=new TextUtils.SimpleStringSplitter('.');
+        splitter.setString(body);
+        List<String> list=new ArrayList<>();
+        while(splitter.hasNext()) {
+            StringBuilder builder = new StringBuilder();
+            for(int index=0;index<10;index++){
+                builder.append(splitter.next());
+                builder.append('.');
+                if(!splitter.hasNext()) break;
+            }
+            list.add(builder.toString());
+        }
+
+        return list;
     }
 
     public String getAuthor() {

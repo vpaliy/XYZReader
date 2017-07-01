@@ -89,13 +89,9 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
 
         void bindData(){
             Article article=at(getAdapterPosition());
-            Time time=new Time();
-            time.parse3339(article.getPublishedDate());
             articleTitle.setText(article.getTitle());
             articleAuthor.setText(article.getAuthor());
-            articleDate.setText(DateUtils.getRelativeTimeSpanString(time.toMillis(false),
-                    System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                    DateUtils.FORMAT_ABBREV_ALL).toString());
+            articleDate.setText(article.getFormattedDate());
             Glide.with(itemView.getContext())
                     .load(article.getPosterUrl())
                     .asBitmap()
@@ -116,7 +112,6 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         private void applyPalette(Palette palette){
             background.setBackgroundColor(ActionBarUtils.getDominantColor(palette));
         }
-
     }
 
     private void unlock(){

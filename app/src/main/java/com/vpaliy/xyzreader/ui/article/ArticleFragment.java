@@ -23,23 +23,16 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ShareCompat;
-import android.support.v4.app.SharedElementCallback;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.TextUtils;
-import android.text.format.DateUtils;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
@@ -157,40 +150,18 @@ public class ArticleFragment extends BaseFragment
 
     @Override
     public void showArticle(Article article) {
-        Time time = new Time();
-        time.parse3339(article.getPublishedDate());
         collapsingToolbarLayout.setTitle(article.getTitle());
         articleTitle.setText(article.getTitle());
         articleAuthor.setText(article.getAuthor());
-        articleDate.setText(DateUtils.getRelativeTimeSpanString(time.toMillis(false),
-                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                DateUtils.FORMAT_ABBREV_ALL).toString());
+        articleDate.setText(article.getFormattedDate());
         loadImage(article.getBackdropUrl());
-        adapter.setData(splitString(article.getBody()));
+        adapter.setData(article.getSplitBody());
 
         actionButton.setOnClickListener(v->
             startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                     .setType("text/plain")
                     .setText(article.getBody())
                     .getIntent(), getString(R.string.action_share))));
-    }
-
-    private List<String> splitString(String body){
-        body= Html.fromHtml(body).toString();
-        TextUtils.SimpleStringSplitter splitter=new TextUtils.SimpleStringSplitter('.');
-        splitter.setString(body);
-        List<String> list=new ArrayList<>();
-        while(splitter.hasNext()) {
-            StringBuilder builder = new StringBuilder();
-            for(int index=0;index<10;index++){
-                builder.append(splitter.next());
-                builder.append('.');
-                if(!splitter.hasNext()) break;
-            }
-            list.add(builder.toString());
-        }
-
-        return list;
     }
 
     private void loadImage(String imageUrl){
