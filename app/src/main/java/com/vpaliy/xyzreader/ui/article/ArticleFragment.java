@@ -13,6 +13,8 @@ import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
+
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -20,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.app.SharedElementCallback;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
@@ -137,7 +140,9 @@ public class ArticleFragment extends BaseFragment
 
         collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(getContext(),android.R.color.transparent));
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
-        ActionBarUtils.fixStatusBarHeight(toolbar);
+        int top=ActionBarUtils.fixStatusBarHeight(getResources());
+        ViewGroup.MarginLayoutParams params= ViewGroup.MarginLayoutParams.class.cast(toolbar.getLayoutParams());
+        params.topMargin=top;
     }
 
     @Override
@@ -162,6 +167,12 @@ public class ArticleFragment extends BaseFragment
                 DateUtils.FORMAT_ABBREV_ALL).toString());
         loadImage(article.getBackdropUrl());
         adapter.setData(splitString(article.getBody()));
+
+        actionButton.setOnClickListener(v->
+            startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
+                    .setType("text/plain")
+                    .setText(article.getBody())
+                    .getIntent(), getString(R.string.action_share))));
     }
 
     private List<String> splitString(String body){
@@ -196,7 +207,7 @@ public class ArticleFragment extends BaseFragment
                         new Palette.Builder(resource)
                                 .generate(ArticleFragment.this::applyPalette);
                         if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
-                            image.setTransitionName(getString(R.string.image_transition)+articleId);
+                            image.setTransitionName(getString(R.string.poster_transition)+articleId);
                             background.setTransitionName(getString(R.string.background_transition)+articleId);
                             articleTitle.setTransitionName(getString(R.string.title_transition)+articleId);
                             articleDate.setTransitionName(getString(R.string.date_transition)+articleId);

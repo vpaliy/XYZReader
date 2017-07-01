@@ -9,15 +9,13 @@ import android.view.ViewGroup;
 
 public class ActionBarUtils {
 
-    public static void fixStatusBarHeight(Toolbar toolbar) {
+    public static int fixStatusBarHeight(Resources resources) {
         int result = 0;
-        Resources resources=toolbar.getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
             result = resources.getDimensionPixelSize(resourceId);
         }
-        ViewGroup.MarginLayoutParams params= ViewGroup.MarginLayoutParams.class.cast(toolbar.getLayoutParams());
-        params.topMargin=result;
+        return result;
     }
 
     public static int getDominantColor(Palette palette){

@@ -14,6 +14,7 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.bus.RxBus;
 import java.util.List;
+
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import javax.inject.Inject;
@@ -38,8 +39,7 @@ public class ArticlesFragment extends BaseFragment
 
     private ArticlesAdapter adapter;
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -63,6 +63,12 @@ public class ArticlesFragment extends BaseFragment
     public void showList(List<Article> articles) {
         checkNotNull(articles);
         adapter.setData(articles);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.stop();
     }
 
     @Override

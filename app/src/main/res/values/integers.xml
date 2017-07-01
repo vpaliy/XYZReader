@@ -4,4 +4,5 @@
     <integer name="message_duration">300</integer>
 
     <integer name="transition_duration">200</integer>
+
 </resources>

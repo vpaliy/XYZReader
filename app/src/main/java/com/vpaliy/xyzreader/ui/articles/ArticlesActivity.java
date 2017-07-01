@@ -30,8 +30,13 @@ public class ArticlesActivity extends BaseActivity{
     }
 
     private void setActionBar(){
-        ActionBarUtils.fixStatusBarHeight(actionBar);
+        int statusBarHeight=ActionBarUtils.fixStatusBarHeight(getResources());
+        actionBar.getLayoutParams().height+=statusBarHeight;
+        actionBar.setPadding(0,statusBarHeight,0,0);
         setSupportActionBar(actionBar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
     }
 
     private void buildUI(){

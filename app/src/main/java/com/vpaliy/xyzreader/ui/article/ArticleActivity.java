@@ -13,11 +13,11 @@ public class ArticleActivity extends BaseActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_article);
         if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
             postponeEnterTransition();
         }
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_article);
         if(savedInstanceState==null){
             setUpUI();
         }
@@ -30,9 +30,7 @@ public class ArticleActivity extends BaseActivity{
     }
 
     @Override
-    public void handleEvent(@NonNull Object event) {
-
-    }
+    public void handleEvent(@NonNull Object event) {}
 
     @Override
     public void injectDependencies() {

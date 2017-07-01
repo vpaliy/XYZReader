@@ -26,7 +26,7 @@ public class Navigator {
         Intent intent=new Intent(activity,ArticleActivity.class);
         intent.putExtra(Constants.EXTRA_ARTICLE_ID,event.articleId);
         if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
-            String transitionName=activity.getString(R.string.image_transition)+event.articleId;
+            String transitionName=activity.getString(R.string.poster_transition)+event.articleId;
             event.image.setTransitionName(transitionName);
             Pair<View,String> imagePair=new Pair<>(event.image,transitionName);
             transitionName=activity.getString(R.string.background_transition)+event.articleId;

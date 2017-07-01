@@ -6,6 +6,8 @@
     <dimen name="fab_elevation">12dp</dimen>
     <dimen name="app_bar_elevation">4dp</dimen>
 
+    <dimen name="toolbar_height">56dp</dimen>
+
     <!-- Font size -->
     <dimen name="font_size_medium">16sp</dimen>
     <dimen name="font_size_big">18sp</dimen>

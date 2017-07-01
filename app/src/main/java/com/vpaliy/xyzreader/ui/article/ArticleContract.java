@@ -10,7 +10,6 @@ public interface ArticleContract {
 
     interface Presenter extends BasePresenter<View> {
         void loadArticle(int id);
-        void stop();
         void attachView(@NonNull View view);
     }
 
