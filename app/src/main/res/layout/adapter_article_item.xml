@@ -50,7 +50,7 @@
                 app:layout_constraintLeft_toLeftOf="@+id/article_title" />
 
             <TextView
-                android:text="4-th of July"
+                tools:text="4-th of July"
                 android:drawableLeft="@drawable/ic_date_range_black_24dp"
                 android:drawableStart="@drawable/ic_date_range_black_24dp"
                 android:id="@+id/article_date"

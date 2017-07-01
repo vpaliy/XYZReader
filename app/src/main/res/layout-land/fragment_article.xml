@@ -129,7 +129,7 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         app:fabSize="normal"
-        android:src="@drawable/ic_share"
+        app:srcCompat="@drawable/ic_share"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_elevation"
         app:elevation="@dimen/fab_elevation"
