@@ -6,6 +6,9 @@
     <dimen name="fab_elevation">12dp</dimen>
     <dimen name="app_bar_elevation">4dp</dimen>
 
+    <dimen name="nested_scroll_margin_top">-140dp</dimen>
+    <dimen name="body_sheet_width">500dp</dimen>
+    <dimen name="details_sheet_height">100dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
 
     <!-- Font size -->

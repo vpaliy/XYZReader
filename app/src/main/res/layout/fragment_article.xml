@@ -108,6 +108,7 @@
         android:id="@+id/body_recycler"
         app:spanCount="@integer/span_count"
         android:padding="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_large"
         app:layoutManager="@string/articles_layout_manager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/layout_content"
