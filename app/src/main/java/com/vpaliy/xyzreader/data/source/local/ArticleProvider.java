@@ -12,18 +12,18 @@ import static com.vpaliy.xyzreader.data.source.local.ArticleContract.PATH_ARTICL
                  database = ArticleDatabase.class)
 public class ArticleProvider {
 
-    public static final String AUTHORITY = "com.vpaliy.espressoinaction.CoffeeProvider";
+    public static final String AUTHORITY = "com.vpaliy.xyzreader";
 
     @TableEndpoint(table = ArticleDatabase.ARTICLES)
     public static class Articles{
 
         @ContentUri(path = PATH_ARTICLE,
-                type = "vnd.android.cursor.dir/coffees",
+                type = "vnd.android.cursor.dir/articles",
                 defaultSort = ArticleContract.ArticleColumns.ARTICLE_ID+" ASC")
         public static Uri ARTICLES=Uri.parse("content://"+AUTHORITY+"/"+PATH_ARTICLE);
 
         public static Uri withId(long id) {
-            return Uri.parse("content://" + AUTHORITY + "/"+PATH_ARTICLE+"/" + id);
+            return ARTICLES.buildUpon().appendPath(Long.toString(id)).build();
         }
 
     }

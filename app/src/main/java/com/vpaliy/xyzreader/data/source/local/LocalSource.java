@@ -48,6 +48,6 @@ public class LocalSource extends DataSource<ArticleEntity> {
 
     @Override
     public void insert(ArticleEntity item) {
-        //contentResolver.insert(ARTICLES,DatabaseUtils.toValue(item));
+        contentResolver.insert(ARTICLES,DatabaseUtils.toValue(item));
     }
 }
