@@ -5,14 +5,11 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+
         classpath 'com.android.tools.build:gradle:2.3.2'
     }
 }
 
-repositories {
-    mavenCentral()
-}
 
 allprojects {
     repositories {
@@ -20,6 +17,16 @@ allprojects {
     }
 
     ext {
+
+        minSdkVersion = 15
+        targetSdkVersion = 25
+        compileSdkVersion = 25
+        buildToolsVersion = '25.0.2'
+        versionName="1.0"
+        versionCode=1
+        appId ="com.vpaliy.xyzreader"
+        testInstrumentationRunner= "android.support.test.runner.AndroidJUnitRunner"
+
         androidSupportVersion = "25.3.1"
         daggerVersion = '2.9'
         rxJavaVersion = '1.1.8'
@@ -32,7 +39,7 @@ allprojects {
         retrofitVersion="2.2.0"
         retrofitConverterVersion="2.1.0"
         retrofitAdapterVersion="2.1.0"
-        gsonVersion = '2.3'
+        gsonVersion = '2.7'
         okHttpVersion = '2.5.0'
 
         /* Testing versions */
