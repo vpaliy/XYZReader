@@ -10,10 +10,21 @@
     <dimen name="body_sheet_width">500dp</dimen>
     <dimen name="details_sheet_height">100dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="shot_collapsed_app_bar_height">168dp</dimen>
 
     <!-- Font size -->
     <dimen name="font_size_medium">16sp</dimen>
     <dimen name="font_size_big">18sp</dimen>
+
+    <!-- Z-axis elevations -->
+    <dimen name="z_app_bar">4dp</dimen>
+    <dimen name="z_card">2dp</dimen>
+    <dimen name="z_fab">6dp</dimen>
+    <dimen name="touch_raise">6dp</dimen>
+    <dimen name="touched_app_bar">8dp</dimen>
+    <dimen name="z_fab_over_touchable_app_bar">9dp</dimen>
+    <dimen name="z_drawer">16dp</dimen>
+    <dimen name="z_dialog">24dp</dimen>
 
     <!-- Spacing -->
     <dimen name="spacing_medium">8dp</dimen>

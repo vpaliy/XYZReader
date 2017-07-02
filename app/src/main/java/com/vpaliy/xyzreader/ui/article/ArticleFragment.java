@@ -169,14 +169,12 @@ public class ArticleFragment extends BaseFragment
                 .load(imageUrl)
                 .asBitmap()
                 .centerCrop()
-                .priority(Priority.HIGH)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .priority(Priority.IMMEDIATE)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(new ImageViewTarget<Bitmap>(image) {
                     @Override
                     protected void setResource(Bitmap resource) {
                         image.setImageBitmap(resource);
-                        new Palette.Builder(resource)
-                                .generate(ArticleFragment.this::applyPalette);
                         if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
                             image.setTransitionName(getString(R.string.poster_transition)+articleId);
                             background.setTransitionName(getString(R.string.background_transition)+articleId);
@@ -185,6 +183,8 @@ public class ArticleFragment extends BaseFragment
                             articleAuthor.setTransitionName(getString(R.string.author_transition)+articleId);
                             startTransition();
                         }
+                        new Palette.Builder(resource)
+                                .generate(ArticleFragment.this::applyPalette);
                     }
                 });
     }

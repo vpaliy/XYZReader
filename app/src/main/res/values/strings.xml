@@ -8,6 +8,7 @@
     <string name="author_transition" translatable="false">author_trans_name</string>
     <string name="date_transition" translatable="false">date_trans_name</string>
     <string name="poster_transition" translatable="false">poster_trans_name</string>
+    <string name="transition_background" translatable="false">background_trans_name"</string>
 
     <string name="action_share">Share</string>
 

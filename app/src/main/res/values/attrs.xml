@@ -2,5 +2,17 @@
 <resources>
     <declare-styleable name="RatioImageView">
         <attr name="image_ration" format="float"/>
+        <attr name="scrimAlpha" format="float"/>
+        <attr name="maxScrimAlpha" format="float"/>
+        <attr name="scrimColor" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="StaggeredDistanceSlide">
+        <attr name="spread" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="Pinnable">
+        <attr name="state_pinned" format="boolean"/>
     </declare-styleable>
 </resources>

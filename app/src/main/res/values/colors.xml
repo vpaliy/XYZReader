@@ -3,8 +3,11 @@
     <color name="colorPrimary">#fafafa</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    
+
+    <color name="mid_grey">#40808080</color>
     <color name="white_50">#fafafa</color>
-    
+    <color name="light_grey">#fff5f5f5</color>
+    <color name="scrim">#99323232</color>
+
     <color name="colorActionBar">#e57373</color>
 </resources>

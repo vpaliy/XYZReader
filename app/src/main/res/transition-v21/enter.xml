@@ -1,12 +1,61 @@
 <transitionSet
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="@integer/transition_duration">
-    <targets>
-        <target android:excludeId="@android:id/statusBarBackground"/>
-        <target android:excludeId="@android:id/navigationBarBackground"/>
-    </targets>
-    <changeBounds/>
-    <changeTransform/>
-    <changeClipBounds />
-    <changeImageTransform/>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <transitionSet>
+        <targets>
+            <target android:excludeId="@android:id/navigationBarBackground" />
+            <target android:excludeId="@android:id/statusBarBackground" />
+            <target android:excludeId="@id/article_image" />
+            <target android:targetId="@id/background"/>
+            <target android:excludeId="@id/background_view" />
+            <target android:excludeId="@id/actionBar" />
+            <target android:excludeId="@id/floatingActionButton" />
+        </targets>
+        <transition
+            class="com.vpaliy.xyzreader.ui.view.StaggeredDistanceSlide"
+            app:spread="5"
+            android:duration="350"
+            android:interpolator="@android:interpolator/linear_out_slow_in" />
+        <fade
+            android:startDelay="250"
+            android:duration="100"
+            android:interpolator="@android:interpolator/linear" />
+    </transitionSet>
+
+    <transitionSet android:transitionOrdering="together">
+        <targets>
+            <target android:targetId="@id/floatingActionButton" />
+        </targets>
+        <transition
+            class="com.vpaliy.xyzreader.ui.view.PopAnimation"
+            android:startDelay="350"
+            android:duration="350"
+            android:interpolator="@android:interpolator/linear_out_slow_in" />
+        <slide
+            android:slideEdge="bottom"
+            android:startDelay="100"
+            android:duration="360"
+            android:interpolator="@android:interpolator/linear_out_slow_in" />
+    </transitionSet>
+
+
+    <fade
+        android:startDelay="300"
+        android:duration="100"
+        android:interpolator="@android:interpolator/linear">
+        <targets>
+            <target android:targetId="@id/actionBar" />
+        </targets>
+    </fade>
+
+    <fade
+        android:duration="350"
+        android:interpolator="@android:interpolator/linear">
+        <targets>
+            <target android:targetId="@android:id/statusBarBackground" />
+            <target android:targetId="@android:id/navigationBarBackground" />
+        </targets>
+    </fade>
+
 </transitionSet>
