@@ -3,6 +3,7 @@ package com.vpaliy.xyzreader.ui.view;
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.CheckResult;
 import android.support.annotation.ColorInt;
@@ -19,7 +20,9 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.animation.Animator;
 import android.animation.TimeInterpolator;
@@ -49,6 +52,29 @@ public class TransitionUtils {
             if (transition instanceof TransitionSet) {
                 Transition child = findTransition((TransitionSet) transition, clazz);
                 if (child != null) return child;
+            }
+        }
+        return null;
+    }
+
+
+    private static final Map<String, Typeface> sTypefaceCache = new HashMap<>();
+
+    public static Typeface get(Context context, String font) {
+        synchronized (sTypefaceCache) {
+            if (!sTypefaceCache.containsKey(font)) {
+                Typeface tf = Typeface.createFromAsset(
+                        context.getApplicationContext().getAssets(), "fonts/" + font + ".ttf");
+                sTypefaceCache.put(font, tf);
+            }
+            return sTypefaceCache.get(font);
+        }
+    }
+
+    public static String getName(@NonNull Typeface typeface) {
+        for (Map.Entry<String, Typeface> entry : sTypefaceCache.entrySet()) {
+            if (entry.getValue() == typeface) {
+                return entry.getKey();
             }
         }
         return null;

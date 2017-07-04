@@ -2,15 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:transitionName="@string/transition_background"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:layout_margin="@dimen/spacing_medium"
+    android:layout_margin="@dimen/spacing_large"
     app:cardElevation="@dimen/cardview_default_elevation"
     app:cardCornerRadius="@dimen/cardview_default_radius"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
+        android:transitionGroup="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,14 +20,12 @@
             android:id="@+id/article_image"
             android:scaleType="centerCrop"
             tools:src="@drawable/image"
-            app:image_ratio="0.8"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <android.support.constraint.ConstraintLayout
             android:orientation="vertical"
             android:padding="@dimen/spacing_large"
-            android:visibility="gone"
             android:id="@+id/background"
             tools:background="#e57373"
             android:layout_below="@+id/article_image"

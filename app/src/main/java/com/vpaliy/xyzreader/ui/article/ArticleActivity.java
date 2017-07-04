@@ -17,7 +17,6 @@ public class ArticleActivity extends BaseActivity{
         if(savedInstanceState==null){
             setUpUI();
         }
-        supportPostponeEnterTransition();
     }
 
     private void setUpUI(){

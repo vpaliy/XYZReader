@@ -1,21 +1,8 @@
-
 <transitionSet
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="350"
     android:transitionOrdering="together">
 
-    <changeBounds android:interpolator="@android:interpolator/fast_out_slow_in">
-        <targets
-            android:targetId="@id/background"/>
-    </changeBounds>
-
-    <transition
-        android:interpolator="@android:interpolator/fast_out_slow_in"
-        class="com.vpaliy.xyzreader.ui.view.SharedImageEnter">
-
-        <targets>
-            <target android:targetId="@id/article_image" />
-        </targets>
-    </transition>
+    <changeBounds android:interpolator="@android:interpolator/fast_out_slow_in"/>
 
 </transitionSet>

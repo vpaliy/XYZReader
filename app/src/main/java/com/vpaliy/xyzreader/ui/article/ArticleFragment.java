@@ -13,17 +13,20 @@ import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
+import com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout;
+import com.vpaliy.xyzreader.ui.view.FABToggle;
 import com.vpaliy.xyzreader.ui.view.RatioImageView;
+import com.vpaliy.xyzreader.ui.view.ReflowText;
+import com.vpaliy.xyzreader.ui.view.TranslatableLayout;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.app.SharedElementCallback;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
@@ -32,17 +35,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-
+import android.widget.TextView;
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.widget.TextView;
+
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 
 public class ArticleFragment extends BaseFragment
         implements ArticleContract.View{
@@ -60,14 +63,14 @@ public class ArticleFragment extends BaseFragment
     @BindView(R.id.actionBar)
     protected Toolbar toolbar;
 
-    @BindView(R.id.floatingActionButton)
-    @Nullable
-    protected FloatingActionButton actionButton;
-
     @BindView(R.id.details)
     protected RecyclerView details;
 
-    private View descriptionLayout;
+    @BindView(R.id.share_fab)
+    protected FABToggle fabToggle;
+
+    @BindView(R.id.details_background)
+    protected TranslatableLayout articleDetailsLayout;
 
     public static ArticleFragment newInstance(Bundle extras){
         ArticleFragment fragment=new ArticleFragment();
@@ -98,8 +101,7 @@ public class ArticleFragment extends BaseFragment
                              @Nullable Bundle savedInstanceState) {
         View root=inflater.inflate(R.layout.dummy,container,false);
         bindLayout(root);
-        ViewCompat.setTransitionName(image,getString(R.string.poster_transition)+articleId);
-        getActivity().supportPostponeEnterTransition();
+        bindAndPostpone();
         return root;
     }
 
@@ -107,8 +109,7 @@ public class ArticleFragment extends BaseFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if(view!=null){
-            descriptionLayout=getActivity().getLayoutInflater().inflate(R.layout.blank, details,false);
-            adapter=new TextContentAdapter(getContext(),descriptionLayout);
+            adapter=new TextContentAdapter(getContext());
             details.setAdapter(adapter);
             details.setHasFixedSize(true);
             details.addOnScrollListener(listener);
@@ -116,6 +117,24 @@ public class ArticleFragment extends BaseFragment
             setUpActionBar();
             presenter.loadArticle(articleId);
         }
+    }
+
+    private void bindAndPostpone(){
+       // ViewCompat.setTransitionName(image,getString(R.string.poster_transition)+articleId);
+        getActivity().supportPostponeEnterTransition();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ElasticDragDismissLayout dragDismissLayout=ButterKnife.findById(getActivity(),R.id.draggable_frame);
+        ElasticDragDismissLayout.SystemChromeFader fader=new ElasticDragDismissLayout.SystemChromeFader(getActivity()){
+            @Override
+            public void onDragDismissed() {
+                getActivity().supportFinishAfterTransition();
+            }
+        };
+        dragDismissLayout.addListener(fader);
     }
 
     private void setUpActionBar(){
@@ -143,8 +162,10 @@ public class ArticleFragment extends BaseFragment
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            final int scrollY= descriptionLayout.getTop();
-            image.setOffset(scrollY);
+             final int scrollY= adapter.getBlank().getTop();
+             image.setOffset(scrollY);
+             articleDetailsLayout.setOffset(articleDetailsLayout.getStaticOffset()+scrollY);
+             fabToggle.setOffset(fabToggle.getStaticOffset()+scrollY);
         }
     };
 
@@ -161,18 +182,18 @@ public class ArticleFragment extends BaseFragment
     @Override
     public void showArticle(Article article) {
         loadImage(article.getBackdropUrl());
-        TextView text= ButterKnife.findById(descriptionLayout,R.id.article_author);
+        TextView text= ButterKnife.findById(articleDetailsLayout,R.id.article_author);
         text.setText(article.getAuthor());
-        text=ButterKnife.findById(descriptionLayout,R.id.article_date);
+        text=ButterKnife.findById(articleDetailsLayout,R.id.article_date);
         text.setText(article.getFormattedDate());
-        text=ButterKnife.findById(descriptionLayout,R.id.article_title);
+        text=ButterKnife.findById(articleDetailsLayout,R.id.article_title);
         text.setText(article.getTitle());
         new Handler().post(()->adapter.setData(article.getSplitBody()));
-        /*actionButton.setOnClickListener(v->
+        fabToggle.setOnClickListener(v->
                 startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
                         .setText(article.getBody())
-                        .getIntent(), getString(R.string.action_share))));*/
+                        .getIntent(), getString(R.string.action_share))));
     }
 
     private void loadImage(String imageUrl){
@@ -191,8 +212,20 @@ public class ArticleFragment extends BaseFragment
                         }
                         new Palette.Builder(resource)
                                 .generate(ArticleFragment.this::applyPalette);
+                        setFabLocation();
                     }
                 });
+    }
+
+    private void setFabLocation(){
+        int imageHeight=image.getHeight();
+        int layoutHeight=articleDetailsLayout.getHeight();
+        int offset=image.getHeight()+layoutHeight-(fabToggle.getHeight()/2);
+        articleDetailsLayout.setOffset(imageHeight);
+        articleDetailsLayout.setStaticOffset(imageHeight);
+        fabToggle.setStaticOffset(offset);
+        fabToggle.setOffset(offset);
+        fabToggle.setMinOffset(ViewCompat.getMinimumHeight(image)-fabToggle.getHeight()/2);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -209,8 +242,7 @@ public class ArticleFragment extends BaseFragment
 
     private void applyPalette(Palette palette){
         if (palette != null) {
-          //  descriptionLayout.findViewById(R.id.blank).setBackgroundColor(ActionBarUtils.getDominantColor(palette));
-            //descriptionLayout.findViewById(R.id.details_background).setBackgroundColor(ActionBarUtils.getDominantColor(palette));
+            articleDetailsLayout.setBackgroundColor(ActionBarUtils.getDominantColor(palette));
         }
     }
 

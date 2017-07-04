@@ -1,48 +1,37 @@
 <transitionSet
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <transitionSet android:transitionOrdering="together">
+        <targets>
+            <target android:targetId="@id/share_fab" />
+        </targets>
+        <transition
+            class="com.vpaliy.xyzreader.ui.view.PopAnimation"
+            android:startDelay="350"
+            android:duration="350"
+            android:interpolator="@android:interpolator/linear_out_slow_in" />
+        <slide
+            android:slideEdge="bottom"
+            android:startDelay="100"
+            android:duration="360"
+            android:interpolator="@android:interpolator/linear_out_slow_in" />
+    </transitionSet>
 
     <transitionSet>
         <targets>
-            <target android:excludeId="@android:id/navigationBarBackground" />
-            <target android:excludeId="@android:id/statusBarBackground" />
-            <target android:excludeId="@id/article_image" />
-            <target android:excludeId="@id/actionBar" />
-            <target android:excludeId="@id/floatingActionButton" />
+            <target android:targetId="@id/blank"/>
+            <target android:targetId="@id/article_body"/>
         </targets>
-        <transition
-            class="com.vpaliy.xyzreader.ui.view.StaggeredDistanceSlide"
-            app:spread="5"
-            android:duration="350"
+        <slide
+            android:slideEdge="bottom"
+            android:startDelay="100"
+            android:duration="360"
             android:interpolator="@android:interpolator/linear_out_slow_in" />
         <fade
             android:startDelay="250"
             android:duration="100"
             android:interpolator="@android:interpolator/linear" />
     </transitionSet>
-
-    <transition
-        class="com.vpaliy.xyzreader.ui.view.BackgroundFade"
-        android:startDelay="350"
-        android:duration="200"
-        android:interpolator="@android:interpolator/linear">
-        <targets>
-            <target android:targetId="@id/blank"/>
-            <target android:targetId="@id/article_date" />
-            <target android:targetId="@id/article_author" />
-            <target android:targetId="@id/article_title" />
-        </targets>
-    </transition>
-
-
-    <fade
-        android:startDelay="300"
-        android:duration="100"
-        android:interpolator="@android:interpolator/linear">
-        <targets>
-            <target android:targetId="@id/actionBar" />
-        </targets>
-    </fade>
 
     <fade
         android:duration="350"

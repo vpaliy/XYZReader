@@ -2,7 +2,6 @@ package com.vpaliy.xyzreader.ui.article;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,8 +12,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Transition;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +27,8 @@ import com.vpaliy.xyzreader.di.module.PresenterModule;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
-import com.vpaliy.xyzreader.ui.view.DummyImage;
 import com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout;
 import com.vpaliy.xyzreader.ui.view.RatioImageView;
-import com.vpaliy.xyzreader.ui.view.TransitionUtils;
 
 import java.util.ArrayList;
 import java.util.List;

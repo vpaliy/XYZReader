@@ -10,24 +10,26 @@ public class NavigationEvent {
     public final int articleId;
     public final ImageView image;
     public final View background;
-    public final View date;
-    public final View author;
-    public final View title;
+    public final TextView date;
+    public final TextView author;
+    public final TextView title;
+    public final View parent;
 
     private NavigationEvent(ImageView image, View background,
-                            View date, View author, View title,
-                            int article){
+                            TextView date, TextView author, TextView title,
+                            View parent, int article){
         this.articleId=article;
         this.background=background;
         this.image=image;
         this.date=date;
         this.author=author;
         this.title=title;
+        this.parent=parent;
     }
 
     public static NavigationEvent navigate(ImageView image, View background,
-                                           View date, View author, View title,
-                                           int articleId){
-        return new NavigationEvent(image,background,date,author,title,articleId);
+                                           TextView date, TextView author, TextView title,
+                                           View parent, int articleId){
+        return new NavigationEvent(image,background,date,author,title,parent,articleId);
     }
 }

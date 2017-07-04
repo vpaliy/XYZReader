@@ -23,10 +23,9 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.Abstrac
 
     private View blank;
 
-    TextContentAdapter(Context context, @NonNull View blank){
+    TextContentAdapter(Context context){
         this.inflater=LayoutInflater.from(context);
         this.data=new ArrayList<>();
-        this.blank=blank;
     }
 
     @Override
@@ -34,6 +33,9 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.Abstrac
         View root;
         switch (viewType){
             case BLANK:
+                if(blank==null){
+                    blank=inflater.inflate(R.layout.blank,parent,false);
+                }
                 return new BlankViewHolder(blank);
             default:
                 root=inflater.inflate(R.layout.layout_content,parent,false);
@@ -44,6 +46,10 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.Abstrac
     public void setData(List<String> data) {
         this.data = data;
         notifyDataSetChanged();
+    }
+
+    public View getBlank(){
+        return blank;
     }
 
     @Override
