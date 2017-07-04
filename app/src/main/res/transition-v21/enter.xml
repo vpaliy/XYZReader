@@ -37,6 +37,7 @@
         android:duration="350"
         android:interpolator="@android:interpolator/linear">
         <targets>
+            <target android:targetId="@+id/back_wrapper"/>
             <target android:targetId="@android:id/statusBarBackground" />
             <target android:targetId="@android:id/navigationBarBackground" />
         </targets>

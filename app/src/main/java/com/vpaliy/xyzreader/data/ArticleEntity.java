@@ -25,6 +25,13 @@ public class ArticleEntity {
     @SerializedName("published_date")
     private String publishedDate;
 
+    /** NOTE!!!
+     domain and data layers shouldn't rely on the presentation,
+     thus they should know nothing about the presentation, idk why it's required by the program
+     **/
+    @SerializedName("aspect_ratio")
+    private float posterRatio;
+
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
     }
@@ -35,6 +42,10 @@ public class ArticleEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setPosterRatio(float posterRatio) {
+        this.posterRatio = posterRatio;
     }
 
     public void setBody(String body) {
@@ -51,6 +62,10 @@ public class ArticleEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public float getPosterRatio() {
+        return posterRatio;
     }
 
     public String getPublishedDate() {

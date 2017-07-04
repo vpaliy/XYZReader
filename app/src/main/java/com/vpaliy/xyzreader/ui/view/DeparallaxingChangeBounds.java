@@ -28,8 +28,6 @@ public class DeparallaxingChangeBounds extends ChangeBounds {
         ParallaxView psv = ((ParallaxView) transitionValues.view);
         if (psv.getOffset() == 0) return;
 
-        // as we're going to remove the offset (which drives the parallax) we need to
-        // compensate for this by adjusting the target bounds.
         Rect bounds = (Rect) transitionValues.values.get(PROPNAME_BOUNDS);
         bounds.offset(0, psv.getOffset());
         transitionValues.values.put(PROPNAME_BOUNDS, bounds);

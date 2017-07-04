@@ -1,23 +1,15 @@
 package com.vpaliy.xyzreader.ui;
 
 import android.app.Activity;
-import android.app.SharedElementCallback;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
-import android.view.View;
-import android.widget.TextView;
 
 import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.ui.article.ArticleActivity;
-import com.vpaliy.xyzreader.ui.article.Dummy;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
-import com.vpaliy.xyzreader.ui.view.ReflowText;
-
-import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

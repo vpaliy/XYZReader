@@ -24,6 +24,7 @@ public class ArticleMapper extends Mapper<Article,ArticleEntity>  {
         article.setTitle(fake.getTitle());
         article.setPublishedDate(fake.getPublishedDate());
         article.setBody(fake.getBody());
+        article.setPosterRatio(fake.getPosterRatio());
         return article;
     }
 }

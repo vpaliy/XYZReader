@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import rx.Observable;
 
 public interface ArticleService {
-    @GET("/xyz-reader-json")
+    @GET("/TNTest/xyzreader/master/data.json")
     Observable<List<ArticleEntity>> provideArticles();
 }

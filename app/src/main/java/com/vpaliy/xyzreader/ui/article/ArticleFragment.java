@@ -12,27 +12,20 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
-import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
-import com.vpaliy.xyzreader.ui.view.BlankView;
+import com.vpaliy.xyzreader.ui.view.PresentationUtils;
 import com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout;
 import com.vpaliy.xyzreader.ui.view.FABToggle;
-import com.vpaliy.xyzreader.ui.view.RatioImageView;
+import com.vpaliy.xyzreader.ui.view.ParallaxRatioImageView;
 import com.vpaliy.xyzreader.ui.view.TranslatableLayout;
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +36,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import javax.inject.Inject;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class ArticleFragment extends BaseFragment
         implements ArticleContract.View{
@@ -52,22 +46,25 @@ public class ArticleFragment extends BaseFragment
     private int articleId;
 
     @BindView(R.id.article_image)
-    protected RatioImageView image;
+    protected ParallaxRatioImageView image;
 
     @BindView(R.id.background)
     protected View background;
 
-    @BindView(R.id.actionBar)
-    protected Toolbar toolbar;
-
     @BindView(R.id.details)
     protected RecyclerView details;
+
+    @BindView(R.id.back_wrapper)
+    protected View backWrapper;
 
     @BindView(R.id.share_fab)
     protected FABToggle fabToggle;
 
     @BindView(R.id.details_background)
     protected TranslatableLayout articleDetailsLayout;
+
+    @BindView(R.id.draggable_frame)
+    protected ElasticDragDismissLayout dragDismissLayout;
 
     public static ArticleFragment newInstance(Bundle extras){
         ArticleFragment fragment=new ArticleFragment();
@@ -90,15 +87,27 @@ public class ArticleFragment extends BaseFragment
             savedInstanceState=getArguments();
         }
         articleId=savedInstanceState.getInt(Constants.EXTRA_ARTICLE_ID);
+        fader=new ElasticDragDismissLayout.SystemChromeFader(getActivity()){
+            @Override
+            public void onDragDismissed() {
+                getActivity().supportFinishAfterTransition();
+            }
+        };
     }
 
     @Nullable @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root=inflater.inflate(R.layout.dummy,container,false);
+        View root=inflater.inflate(R.layout.fragment_article,container,false);
         bindLayout(root);
         return root;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        dragDismissLayout.removeListener(fader);
     }
 
     @Override
@@ -107,7 +116,6 @@ public class ArticleFragment extends BaseFragment
         if(view!=null){
             adapter=new TextContentAdapter(getContext());
             details.setAdapter(adapter);
-            details.addItemDecoration(new MarginDecoration(getContext()));
             details.setHasFixedSize(true);
             details.addOnScrollListener(listener);
             details.setOnFlingListener(flingListener);
@@ -119,22 +127,16 @@ public class ArticleFragment extends BaseFragment
     @Override
     public void onResume() {
         super.onResume();
-        ElasticDragDismissLayout dragDismissLayout=ButterKnife.findById(getActivity(),R.id.draggable_frame);
-        ElasticDragDismissLayout.SystemChromeFader fader=new ElasticDragDismissLayout.SystemChromeFader(getActivity()){
-            @Override
-            public void onDragDismissed() {
-                getActivity().supportFinishAfterTransition();
-            }
-        };
         dragDismissLayout.addListener(fader);
     }
 
     private void setUpActionBar(){
-        toolbar.setPadding(0,ActionBarUtils.fixStatusBarHeight(getResources()),0,0);
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setNavigationIcon(R.drawable.ic_back_arrow);
-        toolbar.setNavigationOnClickListener(view->
-                getActivity().supportFinishAfterTransition());
+        backWrapper.setPadding(0, PresentationUtils.fixStatusBarHeight(getResources()),0,0);
+    }
+
+    @OnClick(R.id.back)
+    public void returnBack(){
+        getActivity().supportFinishAfterTransition();
     }
 
     private RecyclerView.OnFlingListener flingListener = new RecyclerView.OnFlingListener() {
@@ -232,7 +234,7 @@ public class ArticleFragment extends BaseFragment
 
     private void applyPalette(Palette palette){
         if (palette != null) {
-            int[] paletteColors=ActionBarUtils.getPaletteColors(palette);
+            int[] paletteColors= PresentationUtils.getPaletteColors(palette);
             articleDetailsLayout.setBackgroundColor(paletteColors[0]);
             fabToggle.setBackgroundTintList(ColorStateList.valueOf(paletteColors[1]));
         }
@@ -250,20 +252,5 @@ public class ArticleFragment extends BaseFragment
         outState.putInt(Constants.EXTRA_ARTICLE_ID,articleId);
     }
 
-    public class MarginDecoration extends RecyclerView.ItemDecoration {
-
-        private int margin;
-
-        public MarginDecoration(Context context) {
-            margin = context.getResources().getDimensionPixelSize(R.dimen.spacing_large);
-        }
-
-        @Override
-        public void getItemOffsets(
-                Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            if(state.getTargetScrollPosition()==1) {
-                outRect.set(margin, margin, margin, margin);
-            }
-        }
-    }
+    private ElasticDragDismissLayout.SystemChromeFader fader;
 }

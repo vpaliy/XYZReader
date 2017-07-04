@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 
-public class ActionBarUtils {
+public class PresentationUtils {
 
     public static int fixStatusBarHeight(Resources resources) {
         int result = 0;

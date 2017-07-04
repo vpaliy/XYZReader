@@ -1,154 +1,87 @@
-<android.support.design.widget.CoordinatorLayout
+<com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/draggable_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:transitionGroup="false"
-    xmlns:tools="http://schemas.android.com/tools">
+    app:dragDismissDistance="@dimen/drag_dismiss_distance"
+    app:dragDismissScale="0.95">
 
     <View
-        android:id="@+id/background_view"
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/white_50"
-        android:transitionName="@string/transition_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:transitionName="@string/transition_background" />
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:background="@android:color/transparent"
-        app:elevation="@dimen/app_bar_elevation"
-        android:layout_width="match_parent"
+
+    <FrameLayout
+        android:id="@+id/back_wrapper"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:transitionGroup="false"
-        app:layout_behavior=".ui.view.ScrollBehavior">
+        android:background="@android:color/transparent"
+        android:elevation="@dimen/z_fab_over_touchable_app_bar">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/main.collapsing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="@color/colorPrimaryDark"
-            app:titleEnabled="true">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="?android:actionBarSize"
+            android:layout_height="?android:actionBarSize"
+            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_large"
+            app:srcCompat="@drawable/ic_back_arrow"
+            android:background="@drawable/mid_grey_ripple" />
+    </FrameLayout>
 
-            <android.support.constraint.ConstraintLayout
-                android:transitionGroup="false"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.vpaliy.xyzreader.ui.view.RatioImageView
-                    tools:src="@drawable/image"
-                    android:scaleType="centerCrop"
-                    app:image_ratio="0.8"
-                    android:layout_width="0dp"
-                    android:foreground="@drawable/mid_grey_ripple"
-                    app:scrimColor="@color/scrim"
-                    app:scrimAlpha="0"
-                    app:maxScrimAlpha="0.4"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:id="@+id/article_image" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    tools:background="#e57373"
-                    android:visibility="gone"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/article_image"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    android:id="@+id/details_background"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    tools:text="I Love San Francisco"
-                    style="@style/Widget.MainTitle"
-                    android:textColor="@color/white_50"
-                    android:id="@+id/article_title"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toTopOf="@+id/details_background"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:layout_marginStart="@dimen/spacing_medium"
-                    android:layout_marginLeft="@dimen/spacing_medium"
-                    app:layout_constraintLeft_toLeftOf="@+id/details_background"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" />
-
-                <TextView
-                    android:id="@+id/article_author"
-                    tools:text="Walter Paliy"
-                    android:drawableStart="@drawable/ic_feather_"
-                    android:drawableLeft="@drawable/ic_feather_"
-                    android:textColor="@color/white_50"
-                    style="@style/Widget.Subtitle"
-                    android:visibility="gone"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    app:layout_constraintTop_toBottomOf="@+id/article_title"
-                    app:layout_constraintLeft_toLeftOf="@+id/article_title"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" />
-
-                <TextView
-                    tools:text="4-th of July"
-                    android:drawableLeft="@drawable/ic_date_range_black_24dp"
-                    android:drawableStart="@drawable/ic_date_range_black_24dp"
-                    android:id="@+id/article_date"
-                    style="@style/Widget.Subtitle"
-                    android:textColor="@color/white_50"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toTopOf="@+id/article_author"
-                    app:layout_constraintBottom_toBottomOf="@+id/article_author"
-                    app:layout_constraintLeft_toRightOf="@+id/article_author"
-                    android:layout_marginStart="@dimen/spacing_big"
-                    android:layout_marginLeft="@dimen/spacing_big"
-                    app:layout_constraintVertical_bias="1.0"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" />
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/actionBar"
-                app:contentInsetStart="0dp"
-                android:visibility="gone"
-                android:transitionGroup="false"
-                app:contentInsetStartWithNavigation="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                android:fitsSystemWindows="true"
-                app:layout_collapseMode="pin" />
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusableInTouchMode="true"
+        android:importantForAccessibility="no" />
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/body_recycler"
-        android:visibility="gone"
-        app:spanCount="@integer/span_count"
-        android:padding="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_large"
-        app:layoutManager="@string/articles_layout_manager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/layout_content"
+        android:id="@+id/details"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/spacing_medium"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        tools:listitem="@layout/blank"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        app:fabSize="normal"
-        android:scaleX="0"
-        android:scaleY="0"
+    <com.vpaliy.xyzreader.ui.view.ParallaxRatioImageView
+        tools:src="@drawable/image"
+        android:scaleType="centerCrop"
+        app:image_ratio="0.65"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/shot_collapsed_app_bar_height"
+        android:transitionName="@string/poster_transition"
+        android:stateListAnimator="@animator/app_bar_pin"
+        android:foreground="@drawable/mid_grey_ripple"
+        android:background="@color/light_grey"
+        app:scrimColor="@color/scrim"
+        app:scrimAlpha="0"
+        app:maxScrimAlpha="0.4"
+        app:parallaxFactor="-0.5"
+        android:id="@+id/article_image" />
+
+    <include
+        layout="@layout/article_description"/>
+
+    <com.vpaliy.xyzreader.ui.view.FABToggle
+        android:id="@+id/share_fab"
         app:srcCompat="@drawable/ic_share"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_elevation"
-        app:elevation="@dimen/fab_elevation"
-        app:layout_anchorGravity="bottom|end"
-        app:layout_anchor="@id/appBarLayout"
+        app:fabSize="normal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:stateListAnimator="@animator/raise"
+        android:layout_marginRight="@dimen/spacing_medium"
+        android:layout_marginEnd="@dimen/spacing_medium" />
 
-</android.support.design.widget.CoordinatorLayout>
+
+</com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout>

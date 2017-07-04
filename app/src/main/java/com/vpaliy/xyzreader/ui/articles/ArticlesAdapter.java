@@ -18,7 +18,8 @@ import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.bus.RxBus;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
-import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
+import com.vpaliy.xyzreader.ui.view.ParallaxRatioImageView;
+import com.vpaliy.xyzreader.ui.view.PresentationUtils;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.ButterKnife;
@@ -48,7 +49,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
             implements View.OnClickListener{
 
         @BindView(R.id.article_image)
-        ImageView image;
+        ParallaxRatioImageView image;
 
         @BindView(R.id.article_title)
         TextView articleTitle;
@@ -86,8 +87,13 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
             articleTitle.setText(article.getTitle());
             articleAuthor.setText(article.getAuthor());
             articleDate.setText(article.getFormattedDate());
+            float ratio=article.getPosterRatio();
+            if(ratio>1.2f){
+                ratio=1.1f;
+            }
+            image.setImageRatio(ratio);
             Glide.with(itemView.getContext())
-                    .load(article.getPosterUrl())
+                    .load(article.getBackdropUrl())
                     .asBitmap()
                     .centerCrop()
                     .priority(Priority.IMMEDIATE)
@@ -104,7 +110,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         }
 
         private void applyPalette(Palette palette){
-            background.setBackgroundColor(ActionBarUtils.getDominantColor(palette));
+            background.setBackgroundColor(PresentationUtils.getDominantColor(palette));
         }
     }
 

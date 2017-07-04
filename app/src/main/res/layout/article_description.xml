@@ -35,8 +35,8 @@
     <TextView
         tools:text="4-th of July"
         android:transitionName="@string/date_transition"
-        android:drawableLeft="@drawable/ic_date_range_black_24dp"
-        android:drawableStart="@drawable/ic_date_range_black_24dp"
+        android:drawableLeft="@drawable/ic_date"
+        android:drawableStart="@drawable/ic_date"
         android:id="@+id/article_date"
         style="@style/Widget.Subtitle"
         android:textColor="@color/white_50"

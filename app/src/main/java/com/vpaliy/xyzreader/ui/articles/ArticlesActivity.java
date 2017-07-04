@@ -6,11 +6,11 @@ import com.vpaliy.xyzreader.App;
 import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.ui.base.BaseActivity;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
-import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
+import com.vpaliy.xyzreader.ui.view.PresentationUtils;
 import butterknife.ButterKnife;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.ViewGroup;
+
 import butterknife.BindView;
 
 public class ArticlesActivity extends BaseActivity{
@@ -27,7 +27,7 @@ public class ArticlesActivity extends BaseActivity{
     }
 
     private void setActionBar(){
-        int statusBarHeight=ActionBarUtils.fixStatusBarHeight(getResources());
+        int statusBarHeight= PresentationUtils.fixStatusBarHeight(getResources());
         actionBar.getLayoutParams().height+=statusBarHeight;
         actionBar.setPadding(0,statusBarHeight,0,0);
         setSupportActionBar(actionBar);

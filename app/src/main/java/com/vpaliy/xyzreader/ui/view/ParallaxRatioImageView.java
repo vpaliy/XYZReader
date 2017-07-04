@@ -11,11 +11,11 @@ import android.os.Build;
 import android.support.annotation.FloatRange;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.util.Property;
+
 import com.vpaliy.xyzreader.R;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class RatioImageView extends AppCompatImageView
+public class ParallaxRatioImageView extends AppCompatImageView
         implements ParallaxView{
 
     //16:9
@@ -32,23 +32,23 @@ public class RatioImageView extends AppCompatImageView
     private boolean isPinned = false;
     private boolean immediatePin = false;
 
-    public RatioImageView(Context context){
+    public ParallaxRatioImageView(Context context){
         this(context,null,0);
     }
 
-    public RatioImageView(Context context, AttributeSet attrs){
+    public ParallaxRatioImageView(Context context, AttributeSet attrs){
         this(context,attrs,0);
     }
 
-    public RatioImageView(Context context, AttributeSet attrs, int defStyle){
+    public ParallaxRatioImageView(Context context, AttributeSet attrs, int defStyle){
         super(context,attrs,defStyle);
         if(attrs!=null){
-            TypedArray array=getContext().obtainStyledAttributes(attrs, R.styleable.RatioImageView);
-            imageRatio=array.getFloat(R.styleable.RatioImageView_image_ratio,imageRatio);
-            scrimAlpha=array.getFloat(R.styleable.RatioImageView_scrimAlpha,scrimAlpha);
-            maxScrimAlpha=array.getFloat(R.styleable.RatioImageView_maxScrimAlpha,maxScrimAlpha);
-            scrimColor=array.getColor(R.styleable.RatioImageView_scrimColor,scrimColor);
-            parallaxFactor = array.getFloat(R.styleable.RatioImageView_parallaxFactor,parallaxFactor);
+            TypedArray array=getContext().obtainStyledAttributes(attrs, R.styleable.ParallaxRatioImageView);
+            imageRatio=array.getFloat(R.styleable.ParallaxRatioImageView_image_ratio,imageRatio);
+            scrimAlpha=array.getFloat(R.styleable.ParallaxRatioImageView_scrimAlpha,scrimAlpha);
+            maxScrimAlpha=array.getFloat(R.styleable.ParallaxRatioImageView_maxScrimAlpha,maxScrimAlpha);
+            scrimColor=array.getColor(R.styleable.ParallaxRatioImageView_scrimColor,scrimColor);
+            parallaxFactor = array.getFloat(R.styleable.ParallaxRatioImageView_parallaxFactor,parallaxFactor);
             array.recycle();
         }
         scrimPaint = new Paint();

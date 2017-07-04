@@ -18,6 +18,13 @@ public class Article {
     private String author;
     private String publishedDate;
 
+    /** NOTE!!!
+        domain and data layers shouldn't rely on the presentation,
+        thus they should know nothing about the presentation, idk why it's required by the program
+    **/
+
+    private float posterRatio;
+
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -48,6 +55,14 @@ public class Article {
 
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
+    }
+
+    public void setPosterRatio(float posterRatio) {
+        this.posterRatio = posterRatio;
+    }
+
+    public float getPosterRatio() {
+        return posterRatio;
     }
 
     public int getId() {

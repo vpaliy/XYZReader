@@ -6,7 +6,7 @@
         <attr name="static_height" format="dimension"/>
     </declare-styleable>
 
-    <declare-styleable name="RatioImageView">
+    <declare-styleable name="ParallaxRatioImageView">
         <attr name="image_ratio" format="float"/>
         <attr name="scrimAlpha" format="float"/>
         <attr name="maxScrimAlpha" format="float"/>
@@ -44,4 +44,9 @@
         <attr name="finalElevation" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="ForegroundCardView">
+        <attr name="android:foreground" />
+        <attr name="android:foregroundInsidePadding" />
+        <attr name="android:foregroundGravity" />
+    </declare-styleable>
 </resources>
