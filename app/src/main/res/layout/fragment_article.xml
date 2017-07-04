@@ -60,7 +60,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/article_image"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    android:id="@+id/background"
+                    android:id="@+id/details_background"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
@@ -69,11 +69,11 @@
                     android:textColor="@color/white_50"
                     android:id="@+id/article_title"
                     android:visibility="gone"
-                    app:layout_constraintTop_toTopOf="@+id/background"
+                    app:layout_constraintTop_toTopOf="@+id/details_background"
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:layout_marginStart="@dimen/spacing_medium"
                     android:layout_marginLeft="@dimen/spacing_medium"
-                    app:layout_constraintLeft_toLeftOf="@+id/background"
+                    app:layout_constraintLeft_toLeftOf="@+id/details_background"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content" />
 

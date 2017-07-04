@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class BackgroundFade extends Visibility {
@@ -41,10 +42,7 @@ public class BackgroundFade extends Visibility {
     @Override
     public Animator onAppear(ViewGroup sceneRoot, View view,
                              TransitionValues startValues, TransitionValues endValues) {
-        if (view == null || view.getBackground() == null) return null;
-        Drawable background = view.getBackground();
-        background.setAlpha(0);
-        return ObjectAnimator.ofInt(background, DRAWABLE_ALPHA, 0, 255);
+        return null;
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.ui.article.ArticleActivity;
+import com.vpaliy.xyzreader.ui.article.Dummy;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
 import com.vpaliy.xyzreader.ui.view.ReflowText;
@@ -38,7 +39,6 @@ public class Navigator {
             String date=activity.getString(R.string.date_transition);
             String author=activity.getString(R.string.author_transition);
             String parent=activity.getString(R.string.transition_background);
-            String imageShot=transitionName;
             event.image.setTransitionName(transitionName);
             event.title.setTransitionName(title);
             event.background.setTransitionName(background);
@@ -47,8 +47,8 @@ public class Navigator {
             event.parent.setTransitionName(parent);
             ActivityOptionsCompat optionsCompat=ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
                     //shared elements
-                    Pair.create(event.image,image), Pair.create(event.background,background),
-                    Pair.create(event.title,title),Pair.create(event.parent,parent),
+                    Pair.create(event.image,image),Pair.create(event.parent,parent),
+                    Pair.create(event.background,background), Pair.create(event.title,title),
                     Pair.create(event.date,date),Pair.create(event.author,author));
             activity.startActivity(intent,optionsCompat.toBundle());
             return;

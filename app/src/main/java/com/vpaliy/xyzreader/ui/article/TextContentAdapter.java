@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.vpaliy.xyzreader.R;
+import com.vpaliy.xyzreader.ui.view.BlankView;
+
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
-import android.support.annotation.NonNull;
 import butterknife.ButterKnife;
 
 class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.AbstractHolder> {
@@ -21,7 +22,7 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.Abstrac
     private List<String> data;
     private LayoutInflater inflater;
 
-    private View blank;
+    private BlankView blank;
 
     TextContentAdapter(Context context){
         this.inflater=LayoutInflater.from(context);
@@ -34,7 +35,8 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.Abstrac
         switch (viewType){
             case BLANK:
                 if(blank==null){
-                    blank=inflater.inflate(R.layout.blank,parent,false);
+                    View layout=inflater.inflate(R.layout.blank,parent,false);
+                    blank=ButterKnife.findById(layout,R.id.blank);
                 }
                 return new BlankViewHolder(blank);
             default:
@@ -93,7 +95,7 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.Abstrac
         }
 
         void bindData(){
-            content.setText(data.get(getAdapterPosition()));
+            content.setText(data.get(getAdapterPosition()-1));
         }
     }
 }

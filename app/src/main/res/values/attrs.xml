@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="RatioView">
+    <declare-styleable name="BlankView">
         <attr name="ratio" format="float"/>
+        <attr name="static_height" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="RatioImageView">

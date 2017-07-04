@@ -18,6 +18,33 @@ public class ActionBarUtils {
         return result;
     }
 
+    public static int[] getPaletteColors(Palette palette){
+        int colors[]=new int[2];
+        colors[1]=-1;
+        Palette.Swatch dominant=palette.getDominantSwatch();
+        Palette.Swatch result=dominant;
+        if(palette.getDarkVibrantSwatch()!=null){
+            result=palette.getDarkVibrantSwatch();
+        }
+        if(palette.getDarkMutedSwatch()!=null){
+            if(result!=dominant){
+                colors[0]=result.getRgb();
+                colors[1]=palette.getDarkMutedSwatch().getRgb();
+                return colors;
+            }
+            result=palette.getDarkMutedSwatch();
+        }
+        colors[0]=dominant.getRgb();
+        //check now
+        if(result!=dominant){
+            colors[1]=result.getRgb();
+        }else{
+            colors[1]=getSecondaryColor(palette);
+        }
+        return colors;
+
+    }
+
     public static int getDominantColor(Palette palette){
         if (palette != null) {
             Palette.Swatch result=palette.getDominantSwatch();
@@ -39,7 +66,12 @@ public class ActionBarUtils {
 
             Palette.Swatch tabBackground=lightMutedSwatch!=null?lightMutedSwatch
                     :(lightVibrantSwatch!=null?lightVibrantSwatch:palette.getDominantSwatch());
-            return tabBackground.getRgb();
+            int color=tabBackground.getRgb();
+            float[] hsv=new float[3];
+            Color.colorToHSV(color,hsv);
+            hsv[2]*=0.5f;
+            color=Color.HSVToColor(hsv);
+            return color;
         }
         return Color.WHITE;
     }

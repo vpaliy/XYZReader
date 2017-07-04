@@ -56,7 +56,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
         @BindView(R.id.article_author)
         TextView articleAuthor;
 
-        @BindView(R.id.background)
+        @BindView(R.id.details_background)
         View background;
 
         @BindView(R.id.article_date)
@@ -76,8 +76,8 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
                 Article article = at(getAdapterPosition());
                 rxBus.send(NavigationEvent.navigate(image,background,articleDate,
                         articleAuthor,articleTitle,itemView,article.getId()));
-                //release after the details have been launched, 2000ms should be enough
-                handler.postDelayed(ArticlesAdapter.this::unlock,2000);
+                //release after the details have been launched, 800ms should be enough
+                handler.postDelayed(ArticlesAdapter.this::unlock,800);
             }
         }
 

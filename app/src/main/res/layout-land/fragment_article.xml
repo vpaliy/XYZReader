@@ -62,18 +62,18 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    android:id="@+id/background" />
+                    android:id="@+id/details_background" />
 
                 <TextView
                     tools:text="I Love San Francisco"
                     style="@style/Widget.MainTitle"
                     android:textColor="@color/white_50"
                     android:id="@+id/article_title"
-                    app:layout_constraintTop_toTopOf="@+id/background"
+                    app:layout_constraintTop_toTopOf="@+id/details_background"
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:layout_marginStart="@dimen/spacing_medium"
                     android:layout_marginLeft="@dimen/spacing_medium"
-                    app:layout_constraintLeft_toLeftOf="@+id/background"
+                    app:layout_constraintLeft_toLeftOf="@+id/details_background"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content" />
 
@@ -115,7 +115,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/background"
+                    app:layout_constraintTop_toBottomOf="@+id/details_background"
                     app:layoutManager="@string/articles_layout_manager"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     tools:listitem="@layout/layout_content"

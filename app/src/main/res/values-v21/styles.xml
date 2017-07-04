@@ -14,6 +14,7 @@
         <item name="android:windowSharedElementEnterTransition">@transition/shared_enter</item>
         <item name="android:windowSharedElementReturnTransition">@transition/shared_exit</item>
 
+        <item name="android:windowReturnTransition">@transition/exit</item>
         <item name="android:windowEnterTransition">@transition/enter</item>
 
         <item name="android:colorBackgroundCacheHint">@null</item>
@@ -44,5 +45,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Widget.MainTitle">
+        <item name="android:fontFeatureSettings">smcp</item>
+        <item name="android:letterSpacing">0.2</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 </resources>

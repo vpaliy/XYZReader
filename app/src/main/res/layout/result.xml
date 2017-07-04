@@ -10,7 +10,7 @@
     app:dragDismissScale="0.95">
 
     <View
-        android:id="@+id/background"
+        android:id="@+id/details_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_50"

@@ -428,7 +428,7 @@ public class ReflowText extends Transition {
         paint.setColor(data.textColor);
         paint.setLetterSpacing(data.letterSpacing);
         if (data.fontName != null) {
-            paint.setTypeface(TransitionUtils.get(context, data.fontName));
+           // paint.setTypeface(TransitionUtils.get(context, data.fontName));
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -877,7 +877,7 @@ public class ReflowText extends Transition {
             if (TextUtils.isEmpty(name)) {
                 return "roboto-mono-regular";
             }
-            return name;
+            return null;
         }
 
         @Override

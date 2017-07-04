@@ -16,17 +16,15 @@ import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
 import com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout;
 import com.vpaliy.xyzreader.ui.view.FABToggle;
 import com.vpaliy.xyzreader.ui.view.RatioImageView;
-import com.vpaliy.xyzreader.ui.view.ReflowText;
 import com.vpaliy.xyzreader.ui.view.TranslatableLayout;
-
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ShareCompat;
-import android.support.v4.app.SharedElementCallback;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
@@ -36,16 +34,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import java.util.List;
-import java.util.Map;
-
 import javax.inject.Inject;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ArticleFragment extends BaseFragment
         implements ArticleContract.View{
@@ -101,7 +95,7 @@ public class ArticleFragment extends BaseFragment
                              @Nullable Bundle savedInstanceState) {
         View root=inflater.inflate(R.layout.dummy,container,false);
         bindLayout(root);
-        bindAndPostpone();
+        postpone();
         return root;
     }
 
@@ -119,8 +113,7 @@ public class ArticleFragment extends BaseFragment
         }
     }
 
-    private void bindAndPostpone(){
-       // ViewCompat.setTransitionName(image,getString(R.string.poster_transition)+articleId);
+    private void postpone(){
         getActivity().supportPostponeEnterTransition();
     }
 
@@ -207,12 +200,10 @@ public class ArticleFragment extends BaseFragment
                     @Override
                     protected void setResource(Bitmap resource) {
                         image.setImageBitmap(resource);
-                        if(Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT){
-                            startTransition();
-                        }
+                        setFabLocation();
+                        startTransition();
                         new Palette.Builder(resource)
                                 .generate(ArticleFragment.this::applyPalette);
-                        setFabLocation();
                     }
                 });
     }
@@ -228,13 +219,12 @@ public class ArticleFragment extends BaseFragment
         fabToggle.setMinOffset(ViewCompat.getMinimumHeight(image)-fabToggle.getHeight()/2);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startTransition(){
         image.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
                 image.getViewTreeObserver().removeOnPreDrawListener(this);
-                getActivity().startPostponedEnterTransition();
+                getActivity().supportStartPostponedEnterTransition();
                 return true;
             }
         });
@@ -242,7 +232,9 @@ public class ArticleFragment extends BaseFragment
 
     private void applyPalette(Palette palette){
         if (palette != null) {
-            articleDetailsLayout.setBackgroundColor(ActionBarUtils.getDominantColor(palette));
+            int[] paletteColors=ActionBarUtils.getPaletteColors(palette);
+            articleDetailsLayout.setBackgroundColor(paletteColors[0]);
+            fabToggle.setBackgroundTintList(ColorStateList.valueOf(paletteColors[1]));
         }
     }
 
