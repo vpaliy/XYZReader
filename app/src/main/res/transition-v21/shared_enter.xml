@@ -4,8 +4,6 @@
     android:duration="350"
     android:transitionOrdering="together">
 
-    <!-- can't use a pathMotion here as it causes the frame and the shot
-         to separate while moving which looks bad :( -->
     <changeBounds android:interpolator="@android:interpolator/fast_out_slow_in">
         <targets
             android:targetId="@id/background"/>

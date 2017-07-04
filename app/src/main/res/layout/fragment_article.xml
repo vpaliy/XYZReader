@@ -3,20 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:transitionGroup="false"
     xmlns:tools="http://schemas.android.com/tools">
 
     <View
         android:id="@+id/background_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:background="@color/white_50"
-        android:transitionName="@string/transition_background" />
+        android:transitionName="@string/transition_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
+        android:background="@android:color/transparent"
         app:elevation="@dimen/app_bar_elevation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:transitionGroup="false"
         app:layout_behavior=".ui.view.ScrollBehavior">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -28,32 +31,30 @@
             app:titleEnabled="true">
 
             <android.support.constraint.ConstraintLayout
+                android:transitionGroup="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.vpaliy.xyzreader.ui.view.RatioImageView
                     tools:src="@drawable/image"
                     android:scaleType="centerCrop"
-                    app:image_ration="0.8"
+                    app:image_ratio="0.8"
                     android:layout_width="0dp"
+                    android:foreground="@drawable/mid_grey_ripple"
+                    app:scrimColor="@color/scrim"
+                    app:scrimAlpha="0"
+                    app:maxScrimAlpha="0.4"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    android:minHeight="@dimen/shot_collapsed_app_bar_height"
-                    android:foreground="@drawable/mid_grey_ripple"
-                    android:stateListAnimator="@animator/app_bar_pin"
-                    android:background="@color/light_grey"
-                    app:scrimColor="@color/scrim"
-                    app:scrimAlpha="0"
-                    app:maxScrimAlpha="0.4"
                     android:id="@+id/article_image" />
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:visibility="gone"
+                    android:layout_height="0dp"
                     tools:background="#e57373"
+                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/article_image"
@@ -67,6 +68,7 @@
                     style="@style/Widget.MainTitle"
                     android:textColor="@color/white_50"
                     android:id="@+id/article_title"
+                    android:visibility="gone"
                     app:layout_constraintTop_toTopOf="@+id/background"
                     android:layout_marginTop="@dimen/spacing_medium"
                     android:layout_marginStart="@dimen/spacing_medium"
@@ -82,6 +84,7 @@
                     android:drawableLeft="@drawable/ic_feather_"
                     android:textColor="@color/white_50"
                     style="@style/Widget.Subtitle"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/spacing_medium"
                     app:layout_constraintTop_toBottomOf="@+id/article_title"
                     app:layout_constraintLeft_toLeftOf="@+id/article_title"
@@ -95,6 +98,7 @@
                     android:id="@+id/article_date"
                     style="@style/Widget.Subtitle"
                     android:textColor="@color/white_50"
+                    android:visibility="gone"
                     app:layout_constraintTop_toTopOf="@+id/article_author"
                     app:layout_constraintBottom_toBottomOf="@+id/article_author"
                     app:layout_constraintLeft_toRightOf="@+id/article_author"
@@ -109,6 +113,8 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/actionBar"
                 app:contentInsetStart="0dp"
+                android:visibility="gone"
+                android:transitionGroup="false"
                 app:contentInsetStartWithNavigation="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -118,11 +124,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:focusableInTouchMode="true"
-        android:importantForAccessibility="no" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/body_recycler"
@@ -139,6 +140,8 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         app:fabSize="normal"
+        android:scaleX="0"
+        android:scaleY="0"
         app:srcCompat="@drawable/ic_share"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_elevation"
@@ -147,6 +150,5 @@
         app:layout_anchor="@id/appBarLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 
 </android.support.design.widget.CoordinatorLayout>

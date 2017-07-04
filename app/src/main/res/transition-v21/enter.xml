@@ -7,8 +7,6 @@
             <target android:excludeId="@android:id/navigationBarBackground" />
             <target android:excludeId="@android:id/statusBarBackground" />
             <target android:excludeId="@id/article_image" />
-            <target android:targetId="@id/background"/>
-            <target android:excludeId="@id/background_view" />
             <target android:excludeId="@id/actionBar" />
             <target android:excludeId="@id/floatingActionButton" />
         </targets>
@@ -23,21 +21,18 @@
             android:interpolator="@android:interpolator/linear" />
     </transitionSet>
 
-    <transitionSet android:transitionOrdering="together">
+    <transition
+        class="com.vpaliy.xyzreader.ui.view.BackgroundFade"
+        android:startDelay="350"
+        android:duration="200"
+        android:interpolator="@android:interpolator/linear">
         <targets>
-            <target android:targetId="@id/floatingActionButton" />
+            <target android:targetId="@id/blank"/>
+            <target android:targetId="@id/article_date" />
+            <target android:targetId="@id/article_author" />
+            <target android:targetId="@id/article_title" />
         </targets>
-        <transition
-            class="com.vpaliy.xyzreader.ui.view.PopAnimation"
-            android:startDelay="350"
-            android:duration="350"
-            android:interpolator="@android:interpolator/linear_out_slow_in" />
-        <slide
-            android:slideEdge="bottom"
-            android:startDelay="100"
-            android:duration="360"
-            android:interpolator="@android:interpolator/linear_out_slow_in" />
-    </transitionSet>
+    </transition>
 
 
     <fade

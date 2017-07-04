@@ -1,0 +1,58 @@
+<com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/draggable_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionGroup="false"
+    app:dragDismissDistance="@dimen/drag_dismiss_distance"
+    app:dragDismissScale="0.95">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_50"
+        android:transitionName="@string/transition_background" />
+
+
+    <com.vpaliy.xyzreader.ui.view.RatioImageView
+        tools:src="@drawable/image"
+        android:scaleType="centerCrop"
+        app:image_ratio="0.8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/shot_collapsed_app_bar_height"
+        android:foreground="@drawable/mid_grey_ripple"
+        android:background="@color/light_grey"
+        app:scrimColor="@color/scrim"
+        app:scrimAlpha="0"
+        app:maxScrimAlpha="0.4"
+        android:id="@+id/article_image" />
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/z_fab_over_touchable_app_bar">
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusableInTouchMode="true"
+        android:importantForAccessibility="no" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dribbble_comments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/spacing_medium"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        tools:listitem="@layout/article_description"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+</com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout>

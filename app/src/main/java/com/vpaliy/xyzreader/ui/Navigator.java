@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.vpaliy.xyzreader.R;
 import com.vpaliy.xyzreader.ui.article.ArticleActivity;
+import com.vpaliy.xyzreader.ui.article.Dummy;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
 

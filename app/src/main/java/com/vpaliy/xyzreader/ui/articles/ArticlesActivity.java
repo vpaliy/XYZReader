@@ -23,9 +23,6 @@ public class ArticlesActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_articles);
         ButterKnife.bind(this);
-        if(savedInstanceState==null) {
-            buildUI();
-        }
         setActionBar();
     }
 
@@ -37,12 +34,6 @@ public class ArticlesActivity extends BaseActivity{
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-    }
-
-    private void buildUI(){
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame,new ArticlesFragment())
-                .commit();
     }
 
     @Override

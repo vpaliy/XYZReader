@@ -25,6 +25,9 @@
                  android:theme="@style/DetailsTheme">
         </activity>
 
+        <activity android:name=".ui.article.Dummy"
+            android:theme="@style/DetailsTheme"/>
+
         <provider
             android:authorities="com.vpaliy.xyzreader"
             android:name=".data.source.local.generated.ArticleProvider"

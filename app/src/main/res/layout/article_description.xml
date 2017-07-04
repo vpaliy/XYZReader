@@ -1,0 +1,43 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_background"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/spacing_big"
+    android:paddingBottom="@dimen/spacing_medium"
+    android:paddingRight="@dimen/spacing_big"
+    android:background="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        tools:text="I Love San Francisco"
+        style="@style/Widget.MainTitle"
+        android:paddingBottom="@dimen/spacing_medium"
+        android:textColor="@color/white_50"
+        android:id="@+id/article_title"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+    <TextView
+        android:id="@+id/article_author"
+        tools:text="Walter Paliy"
+
+        android:drawableStart="@drawable/ic_feather_"
+        android:drawableLeft="@drawable/ic_feather_"
+        android:textColor="@color/white_50"
+        style="@style/Widget.Subtitle"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+    <TextView
+        tools:text="4-th of July"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:drawableStart="@drawable/ic_date_range_black_24dp"
+        android:id="@+id/article_date"
+        style="@style/Widget.Subtitle"
+        android:textColor="@color/white_50"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+</LinearLayout>

@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Handler;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +19,10 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.bus.RxBus;
 import com.vpaliy.xyzreader.ui.base.bus.event.NavigationEvent;
 import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-import static android.support.v7.graphics.Palette.Swatch;
 import butterknife.ButterKnife;
-
 import butterknife.BindView;
-
 
 public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHolder> {
 
@@ -96,8 +90,8 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
                     .load(article.getPosterUrl())
                     .asBitmap()
                     .centerCrop()
-                    .priority(Priority.HIGH)
-                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                    .priority(Priority.IMMEDIATE)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(new ImageViewTarget<Bitmap>(image) {
                         @Override
                         protected void setResource(Bitmap resource) {

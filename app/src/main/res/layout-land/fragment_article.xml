@@ -23,7 +23,7 @@
             <com.vpaliy.xyzreader.ui.view.RatioImageView
                 tools:src="@drawable/image"
                 android:scaleType="centerCrop"
-                app:image_ration="0.5"
+                app:image_ratio="0.5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/article_image" />

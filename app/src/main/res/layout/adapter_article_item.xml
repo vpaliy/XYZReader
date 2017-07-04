@@ -18,12 +18,14 @@
             android:id="@+id/article_image"
             android:scaleType="centerCrop"
             tools:src="@drawable/image"
+            app:image_ratio="0.8"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <android.support.constraint.ConstraintLayout
             android:orientation="vertical"
             android:padding="@dimen/spacing_large"
+            android:visibility="gone"
             android:id="@+id/background"
             tools:background="#e57373"
             android:layout_below="@+id/article_image"

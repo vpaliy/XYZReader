@@ -1,12 +1,19 @@
 package com.vpaliy.xyzreader.ui.view;
 
 import android.annotation.TargetApi;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
+import android.support.annotation.CheckResult;
+import android.support.annotation.ColorInt;
+import android.support.annotation.FloatRange;
 import android.support.annotation.IdRes;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.transition.Transition;
 import android.transition.TransitionSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -83,6 +90,26 @@ public class TransitionUtils {
         }
         return was;
     }
+
+    public static boolean isNavBarOnBottom(@NonNull Context context) {
+        final Resources res= context.getResources();
+        final Configuration cfg = context.getResources().getConfiguration();
+        final DisplayMetrics dm =res.getDisplayMetrics();
+        boolean canMove = (dm.widthPixels != dm.heightPixels &&
+                cfg.smallestScreenWidthDp < 600);
+        return(!canMove || dm.widthPixels < dm.heightPixels);
+    }
+
+    public static @CheckResult @ColorInt int modifyAlpha(@ColorInt int color,
+                              @IntRange(from = 0, to = 255) int alpha) {
+        return (color & 0x00ffffff) | (alpha << 24);
+    }
+
+    public static @CheckResult @ColorInt int modifyAlpha(@ColorInt int color,
+                                                         @FloatRange(from = 0f, to = 1f) float alpha) {
+        return modifyAlpha(color, (int) (255f * alpha));
+    }
+
 
     public static void restoreAncestralClipping(@NonNull View view, List<Boolean> was) {
         if (view instanceof ViewGroup) {

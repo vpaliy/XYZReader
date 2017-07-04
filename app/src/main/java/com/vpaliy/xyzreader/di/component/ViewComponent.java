@@ -3,6 +3,7 @@ package com.vpaliy.xyzreader.di.component;
 import com.vpaliy.xyzreader.di.module.PresenterModule;
 import com.vpaliy.xyzreader.di.scope.ViewScope;
 import com.vpaliy.xyzreader.ui.article.ArticleFragment;
+import com.vpaliy.xyzreader.ui.article.Dummy;
 import com.vpaliy.xyzreader.ui.articles.ArticlesFragment;
 
 import dagger.Component;
@@ -13,4 +14,5 @@ import dagger.Component;
 public interface ViewComponent {
     void inject(ArticlesFragment fragment);
     void inject(ArticleFragment fragment);
+    void inject(Dummy dummy);
 }

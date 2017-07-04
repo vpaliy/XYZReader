@@ -6,29 +6,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.vpaliy.xyzreader.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
+import android.support.annotation.NonNull;
 import butterknife.ButterKnife;
 
-class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.ViewHolder> {
+class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.AbstractHolder> {
+
+    private final static int BLANK=0;
+    private final static int CONTENT=1;
 
     private List<String> data;
     private LayoutInflater inflater;
 
-    TextContentAdapter(Context context){
+    private View blank;
+
+    TextContentAdapter(Context context, @NonNull View blank){
         this.inflater=LayoutInflater.from(context);
         this.data=new ArrayList<>();
+        this.blank=blank;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View root=inflater.inflate(R.layout.layout_content,parent,false);
-        return new ViewHolder(root);
+    public AbstractHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View root;
+        switch (viewType){
+            case BLANK:
+                return new BlankViewHolder(blank);
+            default:
+                root=inflater.inflate(R.layout.layout_content,parent,false);
+        }
+        return new TextContentAdapter.ViewHolder(root);
     }
 
     public void setData(List<String> data) {
@@ -37,16 +47,36 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(AbstractHolder holder, int position) {
         holder.bindData();
     }
 
     @Override
-    public int getItemCount() {
-        return data.size();
+    public int getItemViewType(int position) {
+        return position==0?BLANK:CONTENT;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemCount() {
+        return data.size()+1;
+    }
+
+    abstract class AbstractHolder extends RecyclerView.ViewHolder {
+        AbstractHolder(View root){
+            super(root);
+            ButterKnife.bind(this,root);
+        }
+        abstract void bindData();
+    }
+
+    class BlankViewHolder extends AbstractHolder{
+        BlankViewHolder(View itemView){
+            super(itemView);
+        }
+        @Override void bindData() {}
+    }
+
+    class ViewHolder extends AbstractHolder {
 
         @BindView(R.id.article_body)
         TextView content;
