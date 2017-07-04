@@ -15,7 +15,8 @@ import android.util.Property;
 import com.vpaliy.xyzreader.R;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class RatioImageView extends AppCompatImageView {
+public class RatioImageView extends AppCompatImageView
+        implements ParallaxView{
 
     //16:9
     private float imageRatio=.5625f;
@@ -30,20 +31,6 @@ public class RatioImageView extends AppCompatImageView {
     private float parallaxFactor = -0.5f;
     private boolean isPinned = false;
     private boolean immediatePin = false;
-
-    public static final Property<RatioImageView, Integer> OFFSET =
-            TransitionUtils.createIntProperty(new TransitionUtils.IntProp<RatioImageView>("offset") {
-                @Override
-                public void set(RatioImageView image, int offset) {
-                    image.setOffset(offset);
-                }
-
-                @Override
-                public int get(RatioImageView image) {
-                    return image.getOffset();
-                }
-            });
-
 
     public RatioImageView(Context context){
         this(context,null,0);

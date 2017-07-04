@@ -4,12 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/details_background"
     android:orientation="vertical"
-    android:stateListAnimator="@animator/app_bar_pin"
     android:transitionName="@string/background_transition"
     android:padding="@dimen/spacing_large"
     android:background="@color/colorAccent"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content">
 
     <TextView
         tools:text="I Love San Francisco"
@@ -29,6 +28,7 @@
         android:textColor="@color/white_50"
         style="@style/Widget.Subtitle"
         android:layout_marginTop="@dimen/spacing_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/article_title"
         app:layout_constraintLeft_toLeftOf="@+id/article_title" />
 

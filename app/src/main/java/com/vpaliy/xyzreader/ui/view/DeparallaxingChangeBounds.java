@@ -24,8 +24,8 @@ public class DeparallaxingChangeBounds extends ChangeBounds {
     @Override
     public void captureEndValues(TransitionValues transitionValues) {
         super.captureEndValues(transitionValues);
-        if (!(transitionValues.view instanceof RatioImageView)) return;
-        RatioImageView psv = ((RatioImageView) transitionValues.view);
+        if (!(transitionValues.view instanceof ParallaxView)) return;
+        ParallaxView psv = ((ParallaxView) transitionValues.view);
         if (psv.getOffset() == 0) return;
 
         // as we're going to remove the offset (which drives the parallax) we need to
@@ -41,11 +41,11 @@ public class DeparallaxingChangeBounds extends ChangeBounds {
                                    TransitionValues endValues) {
         Animator changeBounds = super.createAnimator(sceneRoot, startValues, endValues);
         if (startValues == null || endValues == null
-                || !(endValues.view instanceof RatioImageView)) return changeBounds;
-        RatioImageView psv = ((RatioImageView) endValues.view);
+                || !(endValues.view instanceof ParallaxView)) return changeBounds;
+        ParallaxView psv = ((ParallaxView) endValues.view);
         if (psv.getOffset() == 0) return changeBounds;
 
-        Animator deparallax = ObjectAnimator.ofInt(psv, RatioImageView.OFFSET, 0);
+        Animator deparallax = ObjectAnimator.ofInt(psv, ParallaxView.OFFSET, 0);
         AnimatorSet transition = new AnimatorSet();
         transition.playTogether(changeBounds, deparallax);
         return transition;

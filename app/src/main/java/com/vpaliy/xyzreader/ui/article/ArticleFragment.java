@@ -13,17 +13,21 @@ import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
 import com.vpaliy.xyzreader.ui.view.ActionBarUtils;
+import com.vpaliy.xyzreader.ui.view.BlankView;
 import com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout;
 import com.vpaliy.xyzreader.ui.view.FABToggle;
 import com.vpaliy.xyzreader.ui.view.RatioImageView;
 import com.vpaliy.xyzreader.ui.view.TranslatableLayout;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Build;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.graphics.Palette;
@@ -35,7 +39,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 import butterknife.ButterKnife;
-import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import javax.inject.Inject;
@@ -95,7 +98,6 @@ public class ArticleFragment extends BaseFragment
                              @Nullable Bundle savedInstanceState) {
         View root=inflater.inflate(R.layout.dummy,container,false);
         bindLayout(root);
-        postpone();
         return root;
     }
 
@@ -105,16 +107,13 @@ public class ArticleFragment extends BaseFragment
         if(view!=null){
             adapter=new TextContentAdapter(getContext());
             details.setAdapter(adapter);
+            details.addItemDecoration(new MarginDecoration(getContext()));
             details.setHasFixedSize(true);
             details.addOnScrollListener(listener);
             details.setOnFlingListener(flingListener);
             setUpActionBar();
             presenter.loadArticle(articleId);
         }
-    }
-
-    private void postpone(){
-        getActivity().supportPostponeEnterTransition();
     }
 
     @Override
@@ -131,6 +130,7 @@ public class ArticleFragment extends BaseFragment
     }
 
     private void setUpActionBar(){
+        toolbar.setPadding(0,ActionBarUtils.fixStatusBarHeight(getResources()),0,0);
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.ic_back_arrow);
         toolbar.setNavigationOnClickListener(view->
@@ -185,7 +185,7 @@ public class ArticleFragment extends BaseFragment
         fabToggle.setOnClickListener(v->
                 startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
-                        .setText(article.getBody())
+                        .setText(article.getTitle())
                         .getIntent(), getString(R.string.action_share))));
     }
 
@@ -248,5 +248,22 @@ public class ArticleFragment extends BaseFragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(Constants.EXTRA_ARTICLE_ID,articleId);
+    }
+
+    public class MarginDecoration extends RecyclerView.ItemDecoration {
+
+        private int margin;
+
+        public MarginDecoration(Context context) {
+            margin = context.getResources().getDimensionPixelSize(R.dimen.spacing_large);
+        }
+
+        @Override
+        public void getItemOffsets(
+                Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            if(state.getTargetScrollPosition()==1) {
+                outRect.set(margin, margin, margin, margin);
+            }
+        }
     }
 }

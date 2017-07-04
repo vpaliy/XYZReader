@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <TextView
     android:id="@+id/article_body"
-    android:gravity="left"
     xmlns:tools="http://schemas.android.com/tools"
     tools:text="Article content body"
     android:autoLink="web"
     style="?android:attr/textAppearanceMedium"
-    android:textColor="@android:color/black"
+    android:textColor="@color/text_secondary_dark"
+    android:textSize="15sp"
+    android:lineSpacingExtra="2dp"
     android:linksClickable="true"
-    android:layout_marginTop="@dimen/spacing_medium"
-    android:layout_marginBottom="@dimen/spacing_medium"
+    android:padding="@dimen/spacing_large"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"/>

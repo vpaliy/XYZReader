@@ -7,7 +7,8 @@ import android.util.AttributeSet;
 import android.widget.Checkable;
 import android.widget.LinearLayout;
 
-public class TranslatableLayout extends ConstraintLayout {
+public class TranslatableLayout extends ConstraintLayout
+        implements ParallaxView{
 
     private static final int[] CHECKED_STATE_SET = {android.R.attr.state_checked};
 
@@ -24,6 +25,11 @@ public class TranslatableLayout extends ConstraintLayout {
             offset = Math.max(minOffset, offset);
             setTranslationY(offset);
         }
+    }
+
+    @Override
+    public int getOffset() {
+        return (int)getTranslationY();
     }
 
     public void setStaticOffset(int staticOffset) {

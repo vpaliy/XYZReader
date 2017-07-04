@@ -50,7 +50,7 @@ class TextContentAdapter extends RecyclerView.Adapter<TextContentAdapter.Abstrac
         notifyDataSetChanged();
     }
 
-    public View getBlank(){
+    public BlankView getBlank(){
         return blank;
     }
 

@@ -23,8 +23,10 @@
             <target android:targetId="@id/article_date" />
             <target android:targetId="@id/article_title" />
             <target android:targetId="@id/details_background"/>
+            <target android:targetId="@id/background" />
         </targets>
         <changeBounds android:interpolator="@android:interpolator/fast_out_slow_in" />
+
     </transitionSet>
 
     <transition

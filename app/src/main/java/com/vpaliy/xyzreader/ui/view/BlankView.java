@@ -42,6 +42,10 @@ public class BlankView extends View {
         this.staticHeight = staticHeight;
     }
 
+    public int getStaticHeight() {
+        return staticHeight;
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);

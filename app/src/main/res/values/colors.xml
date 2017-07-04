@@ -8,6 +8,6 @@
     <color name="white_50">#fafafa</color>
     <color name="light_grey">#fff5f5f5</color>
     <color name="scrim">#99323232</color>
-
+    <color name="text_secondary_dark">#8a000000</color> <!-- 54% -->
     <color name="colorActionBar">#e57373</color>
 </resources>
