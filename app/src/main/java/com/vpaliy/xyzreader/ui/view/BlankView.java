@@ -50,6 +50,6 @@ public class BlankView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int measuredWidth=getMeasuredWidth();
-        setMeasuredDimension(measuredWidth, Math.round(measuredWidth*ratio)+staticHeight);
+        setMeasuredDimension(measuredWidth, Math.round(measuredWidth/ratio)+staticHeight);
     }
 }

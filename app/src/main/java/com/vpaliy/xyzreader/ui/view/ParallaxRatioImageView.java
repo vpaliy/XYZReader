@@ -94,7 +94,7 @@ public class ParallaxRatioImageView extends AppCompatImageView
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int measuredWidth=getMeasuredWidth();
-        setMeasuredDimension(measuredWidth, Math.round(measuredWidth*imageRatio));
+        setMeasuredDimension(measuredWidth, Math.round(measuredWidth/imageRatio));
     }
 
     @Override
