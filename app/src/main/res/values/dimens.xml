@@ -12,6 +12,11 @@
     <dimen name="shot_collapsed_app_bar_height">168dp</dimen>
     <dimen name="drag_dismiss_distance">112dp</dimen>
 
+    <dimen name="wrap_content">-2dp</dimen>
+    <dimen name="match_parent">-1dp</dimen>
+
+    <dimen name="details_vertical_padding">24dp</dimen>
+
     <!-- Font size -->
     <dimen name="font_size_medium">16sp</dimen>
     <dimen name="font_size_big">18sp</dimen>
@@ -23,8 +28,6 @@
     <dimen name="touch_raise">6dp</dimen>
     <dimen name="touched_app_bar">8dp</dimen>
     <dimen name="z_fab_over_touchable_app_bar">9dp</dimen>
-    <dimen name="z_drawer">16dp</dimen>
-    <dimen name="z_dialog">24dp</dimen>
 
     <!-- Spacing -->
     <dimen name="spacing_medium">8dp</dimen>
@@ -33,4 +36,10 @@
     <dimen name="spacing_huge">32dp</dimen>
     <dimen name="drawable_padding">4dp</dimen>
     <dimen name="item_bottom_padding">42dp</dimen>
+
+    <!-- Text -->
+    <dimen name="main_title_size">17sp</dimen>
+    <dimen name="subtitle_size">13sp</dimen>
+    <dimen name="details_main_title_size">24sp</dimen>
+    <dimen name="details_subtitle_size">18sp</dimen>
 </resources>

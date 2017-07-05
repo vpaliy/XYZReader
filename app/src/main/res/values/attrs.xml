@@ -15,10 +15,6 @@
     </declare-styleable>
 
 
-    <declare-styleable name="StaggeredDistanceSlide">
-        <attr name="spread" format="integer" />
-    </declare-styleable>
-
     <declare-styleable name="Pinnable">
         <attr name="state_pinned" format="boolean"/>
     </declare-styleable>
@@ -29,15 +25,6 @@
         <attr name="dragDismissScale" format="float" />
         <attr name="dragElasticity" format="float" />
     </declare-styleable>
-
-    <declare-styleable name="ReflowText">
-        <attr name="velocity" format="dimension" />
-        <attr name="minDuration" format="integer" />
-        <attr name="maxDuration" format="integer"/>
-        <attr name="staggerDelay" format="integer" />
-        <attr name="freezeFrame" format="boolean" />
-    </declare-styleable>
-
 
     <declare-styleable name="LiftOff">
         <attr name="initialElevation" format="dimension" />

@@ -33,7 +33,7 @@
 
             <TextView
                 tools:text="I Love San Francisco"
-                android:textSize="17sp"
+                android:textSize="@dimen/main_title_size"
                 android:padding="2dp"
                 style="@style/Widget.MainTitle"
                 android:textColor="@color/white_50"
@@ -44,7 +44,7 @@
             <TextView
                 android:id="@+id/article_author"
                 tools:text="Walter Paliy"
-                android:textSize="13sp"
+                android:textSize="@dimen/subtitle_size"
                 android:drawableStart="@drawable/ic_feather_"
                 android:drawableLeft="@drawable/ic_feather_"
                 android:textColor="@color/white_50"
@@ -58,7 +58,7 @@
                 android:drawableLeft="@drawable/ic_date"
                 android:drawableStart="@drawable/ic_date"
                 android:id="@+id/article_date"
-                android:textSize="13sp"
+                android:textSize="@dimen/subtitle_size"
                 style="@style/Widget.Subtitle"
                 android:textColor="@color/white_50"
                 app:layout_constraintLeft_toLeftOf="@+id/article_author"
