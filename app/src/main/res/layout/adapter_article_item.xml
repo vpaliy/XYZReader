@@ -33,7 +33,7 @@
 
             <TextView
                 tools:text="I Love San Francisco"
-                android:textSize="13sp"
+                android:textSize="17sp"
                 android:padding="2dp"
                 style="@style/Widget.MainTitle"
                 android:textColor="@color/white_50"

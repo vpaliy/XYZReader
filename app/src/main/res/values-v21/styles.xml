@@ -37,7 +37,7 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
 
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
@@ -59,7 +59,6 @@
     <style name="Widget.Subtitle">
         <item name="android:textSize">15sp</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="android:fontFeatureSettings">smcp</item>
         <item name="android:gravity">center</item>
         <item name="android:drawablePadding">@dimen/drawable_padding</item>
         <item name="android:fontFamily">sans-serif-medium</item>
