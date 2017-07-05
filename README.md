@@ -3,8 +3,10 @@
 This repository stores the XYZ Reader project in Udacity’s Android Nanodegree. That is a simple news reader application with elements of Material Design. 
 
 ## Check this out ## 
-![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-video-to-gif(11).gif)
-
+![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-video-to-gif(12).gif)
+![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-resize.png)
+![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-resize(1).png)
+![](https://github.com/vpaliyX/XYZReader/blob/master/art/tablet_resized.png)
 
 ## License ##
 
