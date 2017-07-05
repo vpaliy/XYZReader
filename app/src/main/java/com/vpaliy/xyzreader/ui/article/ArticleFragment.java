@@ -12,6 +12,7 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.article.ArticleContract.Presenter;
 import com.vpaliy.xyzreader.ui.base.BaseFragment;
 import com.vpaliy.xyzreader.ui.base.Constants;
+import com.vpaliy.xyzreader.ui.view.BlankView;
 import com.vpaliy.xyzreader.ui.view.PresentationUtils;
 import com.vpaliy.xyzreader.ui.view.ElasticDragDismissLayout;
 import com.vpaliy.xyzreader.ui.view.FABToggle;
@@ -219,6 +220,9 @@ public class ArticleFragment extends BaseFragment
         fabToggle.setStaticOffset(offset);
         fabToggle.setOffset(offset);
         fabToggle.setMinOffset(ViewCompat.getMinimumHeight(image)-fabToggle.getHeight()/2);
+        BlankView blankView=adapter.getBlank();
+        blankView.setStaticHeight(layoutHeight+(int)getResources().getDimension(R.dimen.spacing_large));
+        blankView.requestLayout();
     }
 
     private void startTransition(){

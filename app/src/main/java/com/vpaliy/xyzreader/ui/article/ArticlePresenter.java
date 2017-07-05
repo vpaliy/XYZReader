@@ -28,7 +28,6 @@ public class ArticlePresenter implements ArticleContract.Presenter{
         this.view=checkNotNull(view);
     }
 
-
     @Override
     public void loadArticle(int id) {
         repository.get(id)

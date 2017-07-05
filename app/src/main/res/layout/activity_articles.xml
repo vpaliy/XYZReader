@@ -12,7 +12,6 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/actionBar"
             tools:layout_marginTop="24dp"
-            android:background="@color/colorActionBar"
             app:layout_scrollFlags="scroll"
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height">
