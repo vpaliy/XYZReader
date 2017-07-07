@@ -3,10 +3,8 @@ package com.vpaliy.xyzreader.ui.view;
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -19,7 +17,7 @@ import android.view.ViewGroup;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class ColorTransition extends Transition {
 
-    private static final String PROPNAME_COLOR = "vpaliy:color";
+    private static final String PROPNAME_COLOR = "com.vpaliy.xyzreader.ui.view:ColorTransition:backgroundColor";
 
     private static final String[] transitionProperties = {
             PROPNAME_COLOR
@@ -50,23 +48,22 @@ public class ColorTransition extends Transition {
             Drawable drawable=view.getBackground();
             if(drawable!=null && drawable instanceof ColorDrawable){
                 ColorDrawable colorDrawable=ColorDrawable.class.cast(drawable);
-                transitionValues.values.put(PROPNAME_COLOR,colorDrawable.getColor());
+                transitionValues.values.put(PROPNAME_COLOR,colorDrawable);
             }
-
         }
     }
 
-    private int getColor(TransitionValues values){
-        return int.class.cast(values.values.get(PROPNAME_COLOR));
+    private ColorDrawable getColor(TransitionValues values){
+        return ColorDrawable.class.cast(values.view.getBackground());
     }
 
     @Override
     public Animator createAnimator(ViewGroup sceneRoot, TransitionValues startValues,
                                    TransitionValues endValues) {
-        int colorFrom = getColor(startValues);
-        int colorTo = getColor(endValues);
-        endValues.view.setBackgroundColor(Color.WHITE);
-        return ObjectAnimator.ofObject(endValues.view, "backgroundColor", new ArgbEvaluator(), colorFrom,Color.WHITE);
+        ColorDrawable colorFrom = getColor(startValues);
+        ColorDrawable colorTo = getColor(endValues);
+        return ObjectAnimator.ofObject(endValues.view, "backgroundColor", new ArgbEvaluator(),
+                colorFrom.getColor(),colorTo.getColor());
     }
 
 }
