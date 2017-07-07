@@ -239,7 +239,7 @@ public class ArticleFragment extends BaseFragment
     private void applyPalette(Palette palette){
         if (palette != null) {
             int[] paletteColors= PresentationUtils.getPaletteColors(palette);
-            articleDetailsLayout.setBackgroundColor(paletteColors[0]);
+        //    articleDetailsLayout.setBackgroundColor(paletteColors[0]);
             fabToggle.setBackgroundTintList(ColorStateList.valueOf(paletteColors[1]));
         }
     }

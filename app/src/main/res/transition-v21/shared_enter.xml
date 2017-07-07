@@ -3,4 +3,14 @@
     android:duration="350"
     android:transitionOrdering="together">
     <changeBounds android:interpolator="@android:interpolator/fast_out_slow_in"/>
+
+    <transition
+        class="com.vpaliy.xyzreader.ui.view.ColorTransition"
+        android:startDelay="350"
+        android:duration="350"
+        android:interpolator="@android:interpolator/linear">
+        <targets>
+            <target android:targetId="@id/details_background"/>
+        </targets>
+    </transition>
 </transitionSet>
