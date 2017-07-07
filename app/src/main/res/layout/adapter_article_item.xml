@@ -45,8 +45,8 @@
                 android:id="@+id/article_author"
                 tools:text="Walter Paliy"
                 android:textSize="@dimen/subtitle_size"
-                android:drawableStart="@drawable/ic_feather_"
-                android:drawableLeft="@drawable/ic_feather_"
+                android:drawableStart="@drawable/ic_bigger_feather"
+                android:drawableLeft="@drawable/ic_bigger_feather"
                 android:textColor="@color/white_50"
                 style="@style/Widget.Subtitle"
                 android:layout_marginTop="@dimen/spacing_medium"
@@ -55,8 +55,8 @@
 
             <TextView
                 tools:text="4-th of July"
-                android:drawableLeft="@drawable/ic_date"
-                android:drawableStart="@drawable/ic_date"
+                android:drawableLeft="@drawable/ic_bigger_date"
+                android:drawableStart="@drawable/ic_bigger_date"
                 android:id="@+id/article_date"
                 android:textSize="@dimen/subtitle_size"
                 style="@style/Widget.Subtitle"

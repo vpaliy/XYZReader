@@ -87,7 +87,11 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
             articleTitle.setText(article.getTitle());
             articleAuthor.setText(article.getAuthor());
             articleDate.setText(article.getFormattedDate());
-            image.setImageRatio(article.getPosterRatio());
+            float ratio=article.getPosterRatio();
+            if(ratio>1.2f){
+                ratio=1.1f;
+            }
+          //  image.setImageRatio(ratio);
             Glide.with(itemView.getContext())
                     .load(article.getBackdropUrl())
                     .asBitmap()

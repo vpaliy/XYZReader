@@ -18,7 +18,6 @@ import com.vpaliy.xyzreader.R;
 public class ParallaxRatioImageView extends AppCompatImageView
         implements ParallaxView{
 
-    //16:9
     private float imageRatio=.5625f;
     private static final int[] STATE_PINNED = { R.attr.state_pinned };
     private final Paint scrimPaint;
@@ -94,7 +93,7 @@ public class ParallaxRatioImageView extends AppCompatImageView
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int measuredWidth=getMeasuredWidth();
-        setMeasuredDimension(measuredWidth, Math.round(measuredWidth/imageRatio));
+        setMeasuredDimension(measuredWidth, Math.round(measuredWidth*imageRatio));
     }
 
     @Override

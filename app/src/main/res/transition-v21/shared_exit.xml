@@ -29,6 +29,16 @@
 
     </transitionSet>
 
+    <transitionSet>
+        <targets>
+            <target android:targetId="@id/article_author" />
+            <target android:targetId="@id/article_date" />
+            <target android:targetId="@id/article_title" />
+        </targets>
+        <transition
+            class="com.vpaliy.xyzreader.ui.view.TextResize"/>
+    </transitionSet>
+
     <transition
         class="com.vpaliy.xyzreader.ui.view.DeparallaxingChangeBounds"
         android:interpolator="@android:interpolator/fast_out_slow_in">

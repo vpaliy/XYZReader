@@ -55,7 +55,7 @@
     <com.vpaliy.xyzreader.ui.view.ParallaxRatioImageView
         tools:src="@drawable/image"
         android:scaleType="centerCrop"
-        app:image_ratio="1.2"
+        app:image_ratio="0.65"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/shot_collapsed_app_bar_height"

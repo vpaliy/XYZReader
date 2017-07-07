@@ -1,6 +1,6 @@
 <com.vpaliy.xyzreader.ui.view.BlankView
     android:id="@+id/blank"
-    app:ratio="1.2"
+    app:ratio="0.65"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
