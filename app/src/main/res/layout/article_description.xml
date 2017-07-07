@@ -13,7 +13,6 @@
     <TextView
         tools:text="I Love San Francisco"
         android:textSize="@dimen/details_main_title_size"
-        android:maxLines="5"
         style="@style/Widget.MainTitle"
         android:transitionName="@string/title_transition"
         android:textColor="@color/white_50"

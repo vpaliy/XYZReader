@@ -65,8 +65,8 @@ public class ColorTransition extends Transition {
                                    TransitionValues endValues) {
         int colorFrom = getColor(startValues);
         int colorTo = getColor(endValues);
-        return ObjectAnimator.ofObject(endValues.view, "backgroundColor", new ArgbEvaluator(), colorFrom,colorTo)
-                .setDuration(1000);
+        endValues.view.setBackgroundColor(Color.WHITE);
+        return ObjectAnimator.ofObject(endValues.view, "backgroundColor", new ArgbEvaluator(), colorFrom,Color.WHITE);
     }
 
 }

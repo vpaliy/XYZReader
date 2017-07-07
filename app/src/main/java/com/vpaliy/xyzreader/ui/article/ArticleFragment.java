@@ -203,10 +203,10 @@ public class ArticleFragment extends BaseFragment
                     @Override
                     protected void setResource(Bitmap resource) {
                         image.setImageBitmap(resource);
-                        setFabLocation();
-                        startTransition();
                         new Palette.Builder(resource)
                                 .generate(ArticleFragment.this::applyPalette);
+                        setFabLocation();
+                        startTransition();
                     }
                 });
     }
@@ -219,10 +219,11 @@ public class ArticleFragment extends BaseFragment
         articleDetailsLayout.setStaticOffset(imageHeight);
         fabToggle.setStaticOffset(offset);
         fabToggle.setOffset(offset);
-        fabToggle.setMinOffset(ViewCompat.getMinimumHeight(image)-fabToggle.getHeight()/2);
+        fabToggle.setMinOffset(layoutHeight-fabToggle.getHeight()/2);
         BlankView blankView=adapter.getBlank();
         blankView.setStaticHeight(layoutHeight+(int)getResources().getDimension(R.dimen.spacing_large));
         blankView.requestLayout();
+        image.setMinimumHeight(layoutHeight);
     }
 
     private void startTransition(){
@@ -239,7 +240,7 @@ public class ArticleFragment extends BaseFragment
     private void applyPalette(Palette palette){
         if (palette != null) {
             int[] paletteColors= PresentationUtils.getPaletteColors(palette);
-        //    articleDetailsLayout.setBackgroundColor(paletteColors[0]);
+            articleDetailsLayout.setBackgroundColor(paletteColors[0]);
             fabToggle.setBackgroundTintList(ColorStateList.valueOf(paletteColors[1]));
         }
     }
