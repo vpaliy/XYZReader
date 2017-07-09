@@ -20,6 +20,7 @@ import android.support.annotation.Nullable;
 import javax.inject.Inject;
 import butterknife.BindView;
 
+import static com.vpaliy.xyzreader.ui.articles.IArticlesConfig.ViewConfig;
 import static com.vpaliy.xyzreader.ui.articles.ArticlesContract.Presenter;
 import static dagger.internal.Preconditions.checkNotNull;
 
@@ -60,9 +61,15 @@ public class ArticlesFragment extends BaseFragment
     }
 
     @Override
-    public void showList(List<Article> articles) {
+    public void showList(List<Article> articles, ViewConfig config) {
         checkNotNull(articles);
+
         adapter.setData(articles);
+    }
+
+    @Override
+    public void changeConfig(ViewConfig config) {
+
     }
 
     @Override

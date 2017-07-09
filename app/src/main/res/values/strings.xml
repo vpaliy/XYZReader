@@ -14,4 +14,8 @@
 
     <string name="error_message">An error has occurred</string>
     <string name="empty_message">No article has been found</string>
+
+    <string name="change_view_action">Change View</string>
+    <string name="as_list">List</string>
+    <string name="as_grid">Grid</string>
 </resources>

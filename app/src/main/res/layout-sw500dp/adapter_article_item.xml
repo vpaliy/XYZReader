@@ -1,0 +1,73 @@
+<android.support.v7.widget.CardView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_state"
+    android:clickable="false"
+    android:layout_margin="@dimen/spacing_medium"
+    app:cardElevation="@dimen/cardview_default_elevation"
+    app:cardCornerRadius="@dimen/cardview_default_radius"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.vpaliy.xyzreader.ui.view.ParallaxRatioImageView
+            android:id="@+id/article_image"
+            android:scaleType="centerCrop"
+            app:image_ratio="0.65"
+            tools:src="@drawable/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.constraint.ConstraintLayout
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large"
+            android:id="@+id/details_background"
+            tools:background="#e57373"
+            android:layout_below="@+id/article_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                tools:text="I Love San Francisco"
+                android:textSize="@dimen/details_main_title_size"
+                android:padding="2dp"
+                android:maxLines="2"
+                style="@style/Widget.MainTitle"
+                android:textColor="@color/white_50"
+                android:id="@+id/article_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/article_author"
+                tools:text="Walter Paliy"
+                android:textSize="@dimen/details_subtitle_size"
+                android:maxLines="1"
+                android:drawableStart="@drawable/ic_bigger_feather"
+                android:drawableLeft="@drawable/ic_bigger_feather"
+                android:textColor="@color/white_50"
+                style="@style/Widget.Subtitle"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:layout_constraintTop_toBottomOf="@+id/article_title"
+                app:layout_constraintLeft_toLeftOf="@+id/article_title" />
+
+            <TextView
+                tools:text="4-th of July"
+                android:drawableLeft="@drawable/ic_bigger_date"
+                android:drawableStart="@drawable/ic_bigger_date"
+                android:id="@+id/article_date"
+                android:maxLines="1"
+                android:textSize="@dimen/details_subtitle_size"
+                style="@style/Widget.Subtitle"
+                android:textColor="@color/white_50"
+                app:layout_constraintLeft_toLeftOf="@+id/article_author"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/article_author" />
+
+        </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

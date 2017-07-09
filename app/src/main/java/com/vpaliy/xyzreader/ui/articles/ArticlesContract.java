@@ -1,12 +1,11 @@
 package com.vpaliy.xyzreader.ui.articles;
 
-import android.support.annotation.NonNull;
-
 import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.ui.base.BasePresenter;
 import com.vpaliy.xyzreader.ui.base.BaseView;
-
 import java.util.List;
+import android.support.annotation.NonNull;
+import static com.vpaliy.xyzreader.ui.articles.IArticlesConfig.ViewConfig;
 
 public interface ArticlesContract {
 
@@ -18,7 +17,8 @@ public interface ArticlesContract {
     }
 
     interface View extends BaseView<Presenter>{
-        void showList(List<Article> articles);
+        void showList(List<Article> articles, ViewConfig config);
+        void changeConfig(ViewConfig config);
         void showErrorMessage();
         void showEmptyMessage();
         void setLoadingIndicator(boolean isLoading);

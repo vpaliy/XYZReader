@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.BindView;
+import static com.vpaliy.xyzreader.ui.articles.IArticlesConfig.ViewConfig;
 
 public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHolder> {
 
@@ -31,6 +32,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
     private Handler handler;
     private RxBus rxBus;
     private boolean isLocked;
+    private ViewConfig config;
 
     ArticlesAdapter(Context context, RxBus rxBus){
         this.data=new ArrayList<>();
@@ -42,6 +44,10 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
     public void setData(List<Article> data) {
         this.data = data;
         notifyDataSetChanged();
+    }
+
+    public void setConfig(ViewConfig config) {
+        this.config = config;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder
@@ -123,8 +129,15 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View root=inflater.inflate(R.layout.adapter_article_item,parent,false);
+        View root=inflateView(parent);
         return new ViewHolder(root);
+    }
+
+    private View inflateView(ViewGroup parent){
+        if(config==null||config==ViewConfig.GRID){
+            return inflater.inflate(R.layout.adapter_article_item,parent,false);
+        }
+        return inflater.inflate(R.layout.adapter_mobile_article_item,parent,false);
     }
 
     @Override

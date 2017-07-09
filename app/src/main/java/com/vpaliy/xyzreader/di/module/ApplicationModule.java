@@ -3,10 +3,11 @@ package com.vpaliy.xyzreader.di.module;
 import android.content.Context;
 
 import com.vpaliy.xyzreader.ui.Navigator;
+import com.vpaliy.xyzreader.ui.articles.ArticleConfig;
+import com.vpaliy.xyzreader.ui.articles.IArticlesConfig;
 import com.vpaliy.xyzreader.ui.base.bus.RxBus;
 
 import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -32,5 +33,10 @@ public class ApplicationModule {
     @Singleton @Provides
     RxBus provideBus(){
         return new RxBus();
+    }
+
+    @Singleton @Provides
+    IArticlesConfig provideArticleConfig(ArticleConfig articleConfig){
+        return articleConfig;
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/second"
+        android:checkableBehavior="single">
+        <item
+            android:title="@string/as_list"
+            android:icon="@drawable/ic_list_view"
+            android:id="@+id/as_list">
+        </item>
+
+        <item
+            android:title="@string/as_grid"
+            android:icon="@drawable/ic_grid_view"
+            android:id="@+id/as_grid"/>
+    </group>
+</menu>

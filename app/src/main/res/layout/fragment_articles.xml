@@ -8,7 +8,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/articles_list"
         tools:listitem="@layout/adapter_article_item"
-        android:paddingTop="@dimen/spacing_medium"
         app:layoutManager="@string/articles_layout_manager"
         app:spanCount="@integer/span_count"
         android:layout_height="match_parent"
