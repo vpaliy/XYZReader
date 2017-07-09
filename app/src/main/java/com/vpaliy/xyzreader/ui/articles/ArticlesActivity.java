@@ -49,7 +49,16 @@ public class ArticlesActivity extends BaseActivity{
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
 
             NavigationView navigationView=ButterKnife.findById(this,R.id.navigation);
+            switch (articlesConfig.fetchConfig()){
+                case GRID:
+                    navigationView.setCheckedItem(R.id.as_grid);
+                    break;
+                case LIST:
+                    navigationView.setCheckedItem(R.id.as_list);
+                    break;
+            }
             navigationView.setNavigationItemSelectedListener(item ->{
+                drawer.closeDrawers();
                 switch (item.getItemId()){
                     case R.id.as_list:
                         articlesConfig.save(ViewConfig.LIST);

@@ -5,15 +5,17 @@ import com.vpaliy.xyzreader.domain.Article;
 import com.vpaliy.xyzreader.domain.IRepository;
 import java.util.List;
 import rx.subscriptions.CompositeSubscription;
-import static com.vpaliy.xyzreader.ui.articles.ArticlesContract.View;
-import static dagger.internal.Preconditions.checkNotNull;
-
 import javax.inject.Inject;
 import android.support.annotation.NonNull;
 import com.vpaliy.xyzreader.di.scope.ViewScope;
 
+import static com.vpaliy.xyzreader.ui.articles.ArticlesContract.View;
+import static dagger.internal.Preconditions.checkNotNull;
+import static com.vpaliy.xyzreader.ui.articles.IArticlesConfig.ViewConfig;
+
 @ViewScope
-public class ArticlesPresenter implements ArticlesContract.Presenter {
+public class ArticlesPresenter implements ArticlesContract.Presenter,
+        IArticlesConfig.Callback {
 
     private View view;
     private IRepository<Article> repository;
@@ -29,6 +31,7 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
         this.schedulerProvider=checkNotNull(schedulerProvider);
         this.subscription=new CompositeSubscription();
         this.iArticlesConfig=iArticlesConfig;
+        this.iArticlesConfig.subscribe(this);
     }
 
     @Override
@@ -39,6 +42,7 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
     @Override
     public void stop() {
         subscription.clear();
+        iArticlesConfig.unsubscribe(this);
     }
 
     @Override
@@ -61,6 +65,11 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
         }else{
             view.showList(articleList,iArticlesConfig.fetchConfig());
         }
+    }
+
+    @Override
+    public void onConfigChanged(ViewConfig config) {
+        view.changeConfig(config);
     }
 
     private void catchError(Throwable ex){
