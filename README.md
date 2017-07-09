@@ -4,6 +4,7 @@ This repository stores the XYZ Reader project in Udacity’s Android Nanodegree.
 
 ## Check this out ## 
 ![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-video-to-gif(12).gif)
+![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-video-to-gif(15).gif)
 ![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-resize.png)
 ![](https://github.com/vpaliyX/XYZReader/blob/master/art/ezgif.com-resize(1).png)
 ![](https://github.com/vpaliyX/XYZReader/blob/master/art/tablet_resized.png)
