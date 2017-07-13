@@ -196,7 +196,6 @@ public class ArticleFragment extends BaseFragment
         Glide.with(getContext())
                 .load(imageUrl)
                 .asBitmap()
-                .centerCrop()
                 .priority(Priority.IMMEDIATE)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(new ImageViewTarget<Bitmap>(image) {
